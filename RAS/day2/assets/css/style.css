@@ -1,0 +1,104 @@
+html{
+    background-color:slategray;
+    font-family: 'Open Sans', sans-serif;
+    cursor:default;
+}
+
+#updateProfile, #myProfile{
+    margin:50px auto;
+    width:1000px;
+    background-color:lightblue;
+    padding:10px;
+    border:thin black solid;
+    border-bottom:medium black solid;
+    border-right:medium black solid;
+    border-radius: 5px;
+}
+
+.centerAlign{
+    text-align:center;
+}
+
+.italic{
+    font-style:italic;
+}
+
+#updateForm{
+    width:100%
+}
+
+.lineItem{
+    margin-left:40px;
+}
+
+.inputMargin{
+    margin:5px;
+}
+
+.twoCol {
+    display:inline-block;
+    width:45%;
+    vertical-align:top;
+    padding:40px 0 40px 40px;
+}
+
+.skillList{
+    list-style: none;
+    margin-left:-40px;
+}
+
+.primaryLabel{
+    width:30%;
+    text-align: left;
+    vertical-align:top;
+    display:inline-block;
+    font-weight:bold;
+}
+
+.skillLabel{
+    width:80px;
+    text-align: left;
+    display:inline-block;
+    margin-left:40px;
+}
+
+.inputText{
+    width:60%;
+    vertical-align:top;
+    display:inline-block;
+}
+
+.buttonStyle{
+    padding:10px 50px 10px 50px;
+    border-radius:10px;
+    border:thin black solid;
+    border-bottom:medium black solid;
+    border-right:medium black solid;
+    background-color:slategray;
+    color:lightgray;
+    font-size:1.25em;
+}
+.buttonStyle:hover{
+    background-color:lightgray;
+    color:black;
+    cursor:pointer;
+
+}
+
+input, select {
+    padding:5px;
+    font-family: 'Open Sans', sans-serif;
+    font-size:1em;
+}
+
+input:focus, select:focus{
+    border:medium solid lightgreen;
+}
+
+input:hover, select:hover{
+    cursor:default;
+}
+
+#footer{
+    text-align:right;
+}

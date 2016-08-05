@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <link rel="icon" type="image/png" href="assets/img/calculator.png" />
+  <title>Simple Calculator by Lou - Now using SASS!</title>
+  <link href="assets/css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="container fade-in">
+    <div class="row">
+      <div id="result" class="result">
+        0
+      </div>
+    </div>
+    <div class="row">
+      <div id="clear" class="command" onclick="clearCalc()" title="Clear">AC</div>
+      <div id="percent" class="command" onclick="percent()" title="Percent">&#x25;</div>
+      <div id="backspace" class="command" onclick="backspace()" title="Delete">&#xe257;</div>
+      <div id="division" class="operator" onclick="operation('divide')" title="Divide">&divide;</div>
+    </div>
+    <div class="row">
+      <div id="seven" class="button" onclick="insertNumber('7')">7</div>
+      <div id="eight" class="button" onclick="insertNumber('8')">8</div>
+      <div id="nine" class="button" onclick="insertNumber('9')">9</div>
+      <div id="multiplication" class="operator" onclick="operation('multiply')" title="Multiply">&times;</div>
+    </div>
+    <div class="row">
+      <div id="four" class="button" onclick="insertNumber('4')">4</div>
+      <div id="five" class="button" onclick="insertNumber('5')">5</div>
+      <div id="six" class="button" onclick="insertNumber('6')">6</div>
+      <div id="subtraction" class="operator" onclick="operation('subtract')" title="Subtract">&minus;</div>
+    </div>
+    <div class="row">
+      <div id="one" class="button" onclick="insertNumber('1')">1</div>
+      <div id="two" class="button" onclick="insertNumber('2')">2</div>
+      <div id="three" class="button" onclick="insertNumber('3')">3</div>
+      <div id="addition" class="operator" onclick="operation('add')" title="Add">&plus;</div>
+    </div>
+    <div class="row">
+      <div id="invert" class="command" onclick="invertNum()" title="Invert Number">&#x207a;/&#x208b;</div>
+      <div id="zero" class="button" onclick="insertNumber('0')">0</div>
+      <div id="decimal" class="button" onclick="insertNumber('.')" title="Decimal">&#x2219;</div>
+      <div id="total" class="operator" onclick="operation('total')"title="Calculate Result">&#x3d;</div>
+    </div>
+    <div class="row">
+      <span id="footer">
+        <a href="changelog.txt" target="_blank" title="Click me to read the changelog.">
+          Simple Calculator v1.8 by Lou
+        </a>
+      </span>
+    </div>
+  </div>
+  <script src="assets/js/main.js"></script>
+</body>
+
+</html>

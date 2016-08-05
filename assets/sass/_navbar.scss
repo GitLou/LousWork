@@ -1,0 +1,136 @@
+//
+// Nav
+// --------------------------------------------------
+
+ul.topnav {
+  position: $nav-position;
+  top:0;
+  left:0;
+  right:0;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: $nav-bg;
+  color: $nav-color;
+  li {
+    float: left;
+    &.dropdown{
+      display: inline-block;
+    }
+    a {
+      display: inline-block;
+      color: $nav-link-color;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      transition: 0.3s;
+      font-size: 17px;
+      &:hover {
+        background-color: $nav-link-hover-bg;
+        color: $nav-link-hover-color;
+      }
+      img{
+        position: relative;
+        height: $font-size-base;
+        width: auto;
+        vertical-align: baseline;
+      }
+      &.active {
+        &,
+        &:hover,
+        &:focus {
+          color: $nav-link-active-color;
+          background-color: $nav-link-active-bg;
+        }
+      }
+    }
+    &.icon {display: none;}
+  }
+}
+
+@media screen and (max-width:680px) {
+  ul.topnav {
+    li {
+      &:not(:first-child) {display: none;}
+      &.icon {
+        float: right;
+        display: inline-block;
+      }
+    }
+  }
+}
+
+@media screen and (max-width:680px) {
+  ul.topnav {
+    &.responsive {
+      li {
+        float: none;
+        display: inline;
+        &.icon {
+          position: absolute;
+          right: 0;
+          top: 0;
+        }
+        a {
+          display: block;
+          text-align: left;
+        }
+      }
+    }
+  }
+}
+
+.navbar-brand {
+  position:relative;
+  font-size: $font-size-large;
+  vertical-align:middle;
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    cursor:default;
+  }
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: $nav-bg;
+  color: $nav-color;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  a {
+    color: $nav-color;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    &:hover{
+      color: $nav-link-active-color;
+      background-color: $nav-link-active-bg;
+    }
+  }
+}
+
+.dropbtn {
+  display: inline-block;
+  color: $nav-link-color;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+.dropdown {
+  &:hover {
+    .dropbtn {
+      background-color: $nav-link-hover-bg;
+      color: $nav-link-hover-color;
+    }
+    .dropdown-content {
+      display: block;
+    }
+  }
+}

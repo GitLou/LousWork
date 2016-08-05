@@ -1,0 +1,152 @@
+@import 'https://fonts.googleapis.com/css?family=Fira+Mono|Fira+Sans|Roboto';
+@import '../css/fonts/glyphicons/font.css';
+
+
+
+$font-stack: 3em 'Fira Sans', sans-serif;
+$glyph: 0.86em 'glyphicons', sans-serif;
+$html-bg: #708090;
+$container-bg:transparent;
+
+$result-bg:#202020;
+$result-color:#FFF;
+$result-text-shadow:none;
+$result-width:700px;
+
+$button-bg:#FFF;
+$button-bg-active:#BBBCBE;
+$button-color:#000;
+$button-text-shadow:none;
+$button-width:25%;
+
+$command-bg:#E5E5E5;
+$command-bg-active:#B0B1B3;;
+$command-color:inherit;
+$command-text-shadow:none;
+$command-width:25%;
+
+$operator-bg:#FFC30B;
+$operator-bg-active:#E07F0F;;
+$operator-color:#FFF;
+$operator-text-shadow:1px 1px #000;
+$operator-width:25%;
+
+$border:1px solid #0A0A0A;
+
+
+
+@mixin box-sizing($type){
+  -webkit-box-sizing: $type;
+     -moz-box-sizing: $type;
+      -ms-box-sizing: $type;
+          box-sizing: $type;
+}
+
+@mixin animation($type){
+  -webkit-animation: $type;
+          animation: $type;
+}
+
+
+
+*,
+*:before,
+*:after {
+  @include box-sizing(border-box !important);
+}
+@-webkit-keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+.fade-in {
+	@include animation(fadeIn 1s ease-in 1 forwards);
+  opacity: 0;
+}
+html {
+  margin:5px 0;
+  font:$font-stack;
+  background:$html-bg;
+  cursor:default;
+}
+.container {
+  width:$result-width;
+  max-width:$result-width !important;
+  margin:auto;
+  display:flex;
+  flex-wrap:wrap;
+  background:$container-bg;
+  .row {
+    width:$result-width;
+    max-width:$result-width !important;
+    display:flex;
+    flex-wrap:wrap;
+    .result {
+        width:$result-width;
+        max-width:$result-width !important;
+        font-size:2em;
+        background:$result-bg;
+        color:$result-color;
+        line-height:1;
+        text-align:right;
+        padding:1em 10px 0 10px;
+        overflow:hidden;
+    }
+    .button{
+        width:$button-width;
+        position:relative;
+        border:$border;
+        background:$button-bg;
+        color:$button-color;
+        text-align:center;
+        line-height:3;
+        height:3.05em;
+        &:active{background-color: $button-bg-active;}
+    }
+    .operator {
+        width:$operator-width;
+        position:relative;
+        border:$border;
+        background:$operator-bg;
+        color:$operator-color;
+        text-align:center;
+        line-height:3;
+        height:3.05em;
+        font-weight:bold;
+        &:active {background-color:$operator-bg-active;}
+    }
+    .command {
+        width:$command-width;
+        position:relative;
+        border:$border;
+        background:$command-bg;
+        color:$command-color;
+        text-align:center;
+        line-height:3;
+        height:3.05em;
+        &:active {background-color:$command-bg-active;}
+    }
+  }
+  #footer {
+    margin-left:auto;
+    font-size:0.5em;
+    color:#DDD;
+    font-style:italic;
+    text-shadow:2px 2px #000;
+    a{
+        color:inherit;
+        text-decoration:none;
+    }
+  }
+}
+
+#backspace{
+    font:$glyph !important;
+    padding-top:1em;
+    height:3.54em;
+}

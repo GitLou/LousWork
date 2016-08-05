@@ -1,0 +1,99 @@
+@import "https://fonts.googleapis.com/css?family=Fira+Mono|Fira+Sans|Roboto";
+@import url(../css/fonts/glyphicons/font.css);
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box !important;
+  -moz-box-sizing: border-box !important;
+  -ms-box-sizing: border-box !important;
+  box-sizing: border-box !important; }
+
+@-webkit-keyframes fadeIn {
+  to {
+    opacity: 1; } }
+@keyframes fadeIn {
+  to {
+    opacity: 1; } }
+.fade-in {
+  -webkit-animation: fadeIn 1s ease-in 1 forwards;
+  animation: fadeIn 1s ease-in 1 forwards;
+  opacity: 0; }
+
+html {
+  margin: 5px 0;
+  font: 3em "Fira Sans", sans-serif;
+  background: #708090;
+  cursor: default; }
+
+.container {
+  width: 700px;
+  max-width: 700px !important;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  background: transparent; }
+  .container .row {
+    width: 700px;
+    max-width: 700px !important;
+    display: flex;
+    flex-wrap: wrap; }
+    .container .row .result {
+      width: 700px;
+      max-width: 700px !important;
+      font-size: 2em;
+      background: #202020;
+      color: #FFF;
+      line-height: 1;
+      text-align: right;
+      padding: 1em 10px 0 10px;
+      overflow: hidden; }
+    .container .row .button {
+      width: 25%;
+      position: relative;
+      border: 1px solid #0A0A0A;
+      background: #FFF;
+      color: #000;
+      text-align: center;
+      line-height: 3;
+      height: 3.05em; }
+      .container .row .button:active {
+        background-color: #BBBCBE; }
+    .container .row .operator {
+      width: 25%;
+      position: relative;
+      border: 1px solid #0A0A0A;
+      background: #FFC30B;
+      color: #FFF;
+      text-align: center;
+      line-height: 3;
+      height: 3.05em;
+      font-weight: bold; }
+      .container .row .operator:active {
+        background-color: #E07F0F; }
+    .container .row .command {
+      width: 25%;
+      position: relative;
+      border: 1px solid #0A0A0A;
+      background: #E5E5E5;
+      color: inherit;
+      text-align: center;
+      line-height: 3;
+      height: 3.05em; }
+      .container .row .command:active {
+        background-color: #B0B1B3; }
+  .container #footer {
+    margin-left: auto;
+    font-size: 0.5em;
+    color: #DDD;
+    font-style: italic;
+    text-shadow: 2px 2px #000; }
+    .container #footer a {
+      color: inherit;
+      text-decoration: none; }
+
+#backspace {
+  font: 0.86em "glyphicons", sans-serif !important;
+  padding-top: 1em;
+  height: 3.54em; }
+
+/*# sourceMappingURL=style.css.map */

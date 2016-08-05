@@ -1,0 +1,21 @@
+html{
+    background-color: darkslategray;
+    color: lightgray;
+}
+.firstClass {
+    color:red;
+    font-size:30px;
+    display:block;
+}
+
+#firstID {
+    color:green;
+    font-weight: bold;
+    display:block;
+    margin-bottom:50px;
+}
+
+a {
+    color: chartreuse;
+    border-bottom: thin solid red;
+}

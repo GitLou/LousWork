@@ -1,0 +1,71 @@
+Javascript Calculator Change Log:
+
+1.8:
+	Was bored tonight so I decided to take another look at the code Chachie shared with me. The SCSS he was using looked really cool.
+	Started looking at reference material on http://sass-lang.com and decided to dive in.
+	Installed Ruby 2.3.0 x64 from http://rubyinstaller.org/ so I can install the SASS Command Line.
+	Installed SASS Command Line from CMD using: gem install sass
+	I ran SASS from CMD using: sass --watch Calculator/sass:Calculator/css
+	Converted existing style.css to style.scss using reference material from http://sass-lang.com/documentation/file.SASS_REFERENCE.htm.
+	When I was happy with my result I pressed CTRL+C to stop SASS from running.
+	During this process I made use of nesting, mixins, and variables. This is really cool stuff.
+	If I have more downtime I want to take a look at the SASS applications mentioned on the above site as well.
+	This way I don't have to keep CMD open and running SASS when I am coding.
+
+1.7:
+	I brought up during class my issues with box-sizing and how it was screwing with the height of the operator.
+	Chachie was here tonight, because he is going to be teaching class next week and Shaun recommended I ask him about it, since according to Shaun, he is the best CSS person he knows.
+	We took a look at what I was trying to do and ultimately decided that Box-Sizing was weird like that and a better solution for the spacing issue is something call Flex.
+	I had never heard of flex, so I started checking my favorite resource W3Schools about it. Chachie also showed me the code he used to make his calculator to see how he using Flex for his layout.
+	Swithed over my layout using Flex and BOOM the box-sizing is fixed! So now I have a 4px border on all sides of my operators when they are selected.
+
+1.6
+	I was doing some testing of my calculator and comparing its results to my iPhone.
+	When you click the percent sign on the iPhone then start typing numbers again it does not add to the decimal. It clears the result field and starts a new number.
+	My calculator did not do that... Time to try and fix this.
+	Set the decimal number to lastNumber (so it is still in "memory") and set currentNumber back to zero.
+	I still tell the calculator to display the lastNumber and only when you try to type another number, does it switch back the the currentNumber.
+
+1.5
+	I was using my Windows 10 Calculator today for something and I mistyped a number. No problem, there is a backspace/delete button on the calculator.
+	I realized that the simple iOS calculator did not have this, but there is room for it. The zero button is 2 buttons wide.
+	Moved the inversion button to the left of zero and in it's place I added the backspace/delete button. Just like the windows 10 Calculator has it layed out.
+	Man, this is going to ruffle someones feathers... Apple design with Microsoft functionality!
+	The backspace code used in the Windows 10 Calculator is HTML Unicode &#x232b;
+	Well that was easy... NOT! Try finding a web-enabled font that supports this Unicode Character. I sure as hell couldn't find one...
+	Solution: Glyphicons. &#xe257; in the Glyphicons.woff font is the same as &#x232b;
+	Still not perfect though. I am using font-size 2em as my button font-size and Glyphicon's size is different than my normal font.
+	After what seemed like hours of tweaking, I finally got the right mixture of font-size, padding, and line-height to make the Backspace/Delete button look identical to the rest.
+
+1.4:
+	Showed the calculator to my brother to see if he had a suggestion for the box-sizing (I got him into web dev also a while back and he sometimes learns something I haven't).
+	No luck there, but he did bring up a cool feature. Why make the user click on the numbers when they have a keyboard 
+	Added keyboard functionality to the whole calculator.
+	Supports SHIFT+ aswell for people that do not have a NumPad.
+	Esc key clears, Enter key calculates the total. Everything else if pretty self explanitory.
+	I don't have a key for inversion, simply because I can't think of an intuitive key for the function.
+
+1.3:
+	Had some extra time today so I decided to add the remaining 2 missing buttons that are on the basic iOS Calculator
+	Percent was easy. Simply took the currentNumber and divided it by 100 to get the decimal notation of the percent.
+	The plus/minus button, I call it the inversion button, was also pretty easy. Multiply the current number by -1. Done.
+	Still searching the web to try and fix the Box-Sizing issue. No luck yet.
+
+1.2:
+	Did some research with a fresh eyes after working on the other functionality and discovered Box-Sizing.
+	Still not 100% fixing my spacing issue but it looks a lot better.
+	I want a 4px border around the operators when they have been clicked, but I don't want the size of the button to change.
+	Box-Sizing: Border-Box is supposed to fix this by keeping contents, padding, & border within the specified size.
+	It works fine with the left and right side but the top and bottom and not staying the same size.
+	To cope for now I am just adding the 4px border to the left side of the operator. This give the effect I am looking for, just not 100% what I was trying to achieve.
+
+1.1:
+	Still having CSS issues, getting frustrated with it.
+	So I am going to change it up and add Decimal and Clear buttons.
+	Wrote javascript to handle the new buttons.
+
+1.0:
+	Wrote basic layout of calculator with minimum functionality requested by Shaun.
+	The styling of the calculator is to look like the iOS calculator that comes with the OS.
+	Having some issues still with padding or margins. Will work on it later when I have more time.
+	Wrote Javascript to handle this functionality

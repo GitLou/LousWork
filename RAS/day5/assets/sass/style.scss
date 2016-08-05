@@ -1,0 +1,104 @@
+@import 'https://fonts.googleapis.com/css?family=Fira+Mono|Fira+Sans|Roboto';
+
+
+/* SCSS VARIABLES START */
+$font-stack: 100% 'Fira Sans', sans-serif;
+$html-bg: #708090;
+
+$container-bg:transparent;
+$container-width: 1000px;
+
+$form-bg: #CCC;
+$form-border: 4px solid #333;
+/* SCSS VARIABLES END */
+
+
+@mixin box-sizing($type){
+  -webkit-box-sizing: $type;
+     -moz-box-sizing: $type;
+      -ms-box-sizing: $type;
+          box-sizing: $type;
+}
+
+@mixin animation($type){
+  -webkit-animation: $type;
+          animation: $type;
+}
+
+
+*,
+*:before,
+*:after {
+  @include box-sizing(border-box !important);
+}
+
+html {
+  margin:5px 0;
+  font:$font-stack;
+  background:$html-bg;
+  cursor:default;
+}
+
+section {
+  width:$container-width;
+  max-width:$container-width !important;
+  margin:auto;
+  display:flex;
+  flex-wrap:wrap;
+  background:$container-bg;
+
+  form{
+      background: $form-bg;
+      border: $form-border;
+      padding:20px;
+  }
+
+  .row {
+    width:$container-width;
+    max-width:$container-width !important;
+    display:flex;
+    flex-wrap:wrap;
+
+    .cell25{
+        position:relative;
+        width:25%;
+    }
+
+    .cell50{
+        position:relative;
+        width:50%;
+    }
+    .cell75{
+        position:relative;
+        width:75%;
+    }
+    .cell100{
+        position:relative;
+        width:7100%;
+    }
+  }
+}
+
+label, textarea {
+    width:100%;
+    input[type=text] {
+        width:75%;
+        height:100%;
+    }
+}
+
+.center-align{
+    text-align: center;
+}
+
+.right-align{
+    text-align: right;
+}
+
+.push-right{
+    float:right;
+}
+
+#footer{
+    margin-top:10px;
+}

@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+    <title>Forms</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+
+<body>
+    <section id="container">
+        <form name="commentForm" method="POST" action="#">
+            <h1>Enter Your Comment</h1>
+            <div class="row">
+                <div class="cell25">
+                    <label for="commentText">Comment: </label>
+                </div>
+                <div class="cell75">
+                    <textarea name="commentText"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="cell50">
+                    <label for="createdBy">Created By: <input type="text" name="createdBy" /></label>
+                </div>
+                <div class="cell25">
+                    <label for="isImportant"><input type="checkbox" name="isImportant" /> Important</label>
+                </div>
+                <div class="cell25 right-align">
+                    <input type="submit" value="Send" />
+                </div>
+            </div>
+        </form>
+    </section>
+    <section id="footer">
+        <div class="row">
+            <div class="cell100 right-align">
+                Created By: Lou Garrett &ensp; | &ensp; <a href="movie.html">Search for a movie</a>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

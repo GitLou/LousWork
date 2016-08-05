@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Update Profile</title>
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+        <link href="assets/css/style.css" rel="stylesheet">
+    </head>
+    <body>
+        <div id="updateProfile">
+            <h1 class="centerAlign">Update Profile</h1>
+        	<form id="updateForm" method="GET" action="#">
+                <div class="lineItem">
+                    <label class="primaryLabel inputMargin" for="name">Name</label>
+                    <input class="inputText inputMargin" id="name" type="text" name="name" placeholder="John Smith">
+                </div>
+                <div class="lineItem">
+                    <label class="primaryLabel inputMargin" for="address">Address</label>
+                    <input class="inputText inputMargin" id="address" type="text" name="address">
+                </div>
+                <div class="lineItem">
+                    <label class="primaryLabel inputMargin" for="phone">Phone Number</label>
+                    <input class="inputText inputMargin" id="phone" type="tel" name="phone" placeholder="(###) ###-####">
+                </div>
+                <div class="lineItem">
+                    <label class="primaryLabel inputMargin" for="email">Email</label>
+                    <input class="inputText inputMargin" id="email" type="email" name="email"  placeholder="email@address">
+                </div>
+                <div class="lineItem">
+                    <label class="primaryLabel inputMargin" for="sex">Sex</label>
+                    <div class="inputText inputMargin">
+                        <input type="radio" name="sex" id="male" value="Male">
+                        <label for="male">Male </label>
+                        &emsp;
+                        <input type="radio" name="sex" id="female" value="Female">
+                        <label for="female">Female </label>
+                    </div>
+                </div>
+                <div class="lineItem">
+                    <label class="primaryLabel inputMargin" for="goal">Goal</label>
+                    <select id="goal" class="inputText inputMargin">
+                        <option value="Learn Ruby on Rails">Learn HTML</option>
+                        <option value="Learn Ruby on Rails">Learn CSS</option>
+                        <option value="Learn Ruby on Rails">Learn Javascript</option>
+                        <option selected="selected" value="Learn Ruby on Rails">Learn Ruby on Rails</option>
+                    </select>
+                </div>
+                <div class="lineItem">
+                    <label class="primaryLabel inputMargin" for="skillset">Skillset</label>
+                    <div class="inputText inputMargin">
+                        <ul class="skillList">
+                            <li>
+                                <label class="skillLabel" for="skillset1">HTML</label> 
+                                <input type="checkbox" id="skillset1" name="skillset1" id="HTML" value="HTML">
+                            </li>
+                            <li>
+                                <label class="skillLabel" for="skillset2">CSS</label> 
+                                <input type="checkbox" id="skillset2" name="skillset2" id="CSS" value="CSS">
+                            </li>
+                            <li>
+                                <label class="skillLabel" for="skillset3">Javascript</label> 
+                                <input type="checkbox" id="skillset3" name="skillset3" id="Javascript" value="Javascript">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="lineItem centerAlign">
+                    <input class="inputMargin buttonStyle" type="submit" value="Submit">
+                </div>
+            </form>
+            <div id="footer">
+                <a href="index.html">Back to Profile</a>
+            </div>
+        </div>
+    </body>
+</html>
