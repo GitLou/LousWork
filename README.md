@@ -42,5 +42,5 @@ git push -u origin master
 git init // <- only needs to be ran once per session
 git add .
 git commit -m "commit message here"
-git push -u
+git push -u origin master
 ```
