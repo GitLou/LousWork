@@ -1,6 +1,7 @@
 # Code School Message Board Lab
 Click here for a [Live View](http://lous.work/RAS/day9) of the project.
 Using your wits and knowledge of `XMLHttpRequest`, add code to make this a functioning message board!
+
 Updating the project from Day6 to use JQuery where possible.
 
 ## Requirements
