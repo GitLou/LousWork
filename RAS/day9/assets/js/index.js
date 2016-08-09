@@ -121,6 +121,7 @@ function showMessages(messages, pageNum) {
   
   switch (type) {
     case "table":
+      console.log("Print as table");
       x = $('<table id="messageTable" class="col-lg-12"></table>)');
       $("#messagesContainer").append(x);
       
@@ -132,7 +133,6 @@ function showMessages(messages, pageNum) {
       h3 = $('<th class="col-lg-2">Actions</th>');
       $('#headRow').append(h1, h2, h3);
       
-      n = 1;
       for(i=((pageNum * perPage)-perPage); i < (pageNum * perPage); i++) {
         message = messages[i];
         
@@ -142,34 +142,23 @@ function showMessages(messages, pageNum) {
           msgDate = 'Last updated ' + moment(message.updatedAt).fromNow();
         }
       
-        y = x.insertRow(n);
-        y.setAttribute("id", "r"+i);
+        y = $('<tr id="r'+ i +'"></tr>');
+        $('#messageTable').append(y);
         
-        c1 = y.insertCell(0);
-        c2 = y.insertCell(1);
-        c3 = y.insertCell(2);
-        
-        c1.setAttribute("class", "comment col-lg-6");
-        c2.setAttribute("class", "author col-lg-4");
-        c3.setAttribute("class", "actions col-lg-2");
-        
-        c1.innerHTML = (message.isImportant ? '<span class="label label-danger">IMPORTANT</span>&ensp;' : '') + message.commentText;
-        c2.innerHTML = message.createdBy + '<br />' + msgDate;
-        c3.innerHTML = '<button class="btn btn-primary" onclick="editMessage(' + message.id + ')"><i class="glyphicon glyphicon-pencil"></i></button>' +
-                        '<button class="btn btn-danger" onclick="deleteMessage(' + message.id + ')"><i class="glyphicon glyphicon-trash"></i></button>';
-        
-        n++;
+        c1 = $('<td class="comment col-lg-6"></td>').html((message.isImportant ? '<span class="label label-danger">IMPORTANT</span>&ensp;' : '') + message.commentText);
+        c2 = $('<td class="author col-lg-4"></td>').html(message.createdBy + '<br />' + msgDate);
+        c3 = $('<td class="actions col-lg-2"></td>').html('<button class="btn btn-primary" onclick="editMessage(' + message.id + ')"><i class="glyphicon glyphicon-pencil"></i></button>' + '<button class="btn btn-danger" onclick="deleteMessage(' + message.id + ')"><i class="glyphicon glyphicon-trash"></i></button>');
+        $("#r"+i).append(c1, c2, c3);
       }
       break;
         
     default:
-      console.log("Print as default");
-      //messages.forEach(function(message) {
+      console.log("Print as default.");
       for(i=((pageNum * perPage)-perPage); i < (pageNum * perPage); i++) {
         message = messages[i];
-        var messageDiv = document.createElement("div");
-        var messageTextDiv = document.createElement("div");
-        var messageDateDiv = document.createElement("p");
+        var messageDiv = $('<div class="message"></div>'); //document.createElement("div");
+        var messageTextDiv = $('<div></div>'); //document.createElement("div");
+        var messageDateDiv = $('<p class="date"></p>'); //document.createElement("p");
 
           // message header
         var messageHtml = '<p>' + message.createdBy + (message.isImportant ? '&#160;<span class="label label-danger">IMPORTANT</span>' : '') + 
@@ -177,24 +166,21 @@ function showMessages(messages, pageNum) {
             '</button><button class="btn btn-primary pull-right" onclick="editMessage(' + message.id + ')"><i class="glyphicon glyphicon-pencil"></i></button></p>';
         
           // message text
-        messageTextDiv.innerHTML = message.commentText;
+        messageTextDiv.html(message.commentText);
 
           // message date
         if (message.createdAt === message.updatedAt) {
-          messageDateDiv.innerHTML = 'Created ' + moment(message.createdAt).fromNow();
+          messageDateDiv.html('Created ' + moment(message.createdAt).fromNow());
         } else {
-          messageDateDiv.innerHTML = 'Last updated ' + moment(message.updatedAt).fromNow();
+          messageDateDiv.html('Last updated ' + moment(message.updatedAt).fromNow());
         }
 
-        messageDateDiv.classList.add('date');
-
           // update message div
-        messageDiv.classList.add('message');
-        messageDiv.innerHTML = messageHtml;
-        messageDiv.appendChild(messageTextDiv);
-        messageDiv.appendChild(messageDateDiv);
+        $(messageDiv).html(messageHtml);
+        $(messageDiv).append(messageTextDiv);
+        $(messageDiv).append(messageDateDiv);
 
-        messagesContainer.append(messageDiv);
+       $("#messagesContainer").append(messageDiv);
       }
     }
 }
