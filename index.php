@@ -70,7 +70,8 @@
      <a href="./RAS/day3" target="_blank">Day 3 &amp; 4 - Simple Calculator</a><br />
      <a href="./RAS/day5" target="_blank">Day 5 - Forms and Sending Data</a><br />
      <a href="./RAS/day6" target="_blank">Day 6 - 9 - POST/GET/PUT/DELETE</a><br />
-     <a href="./RAS/fizzbuzz" target="_blank">Day 9 - FizzBuzz</a>
+     <a href="./RAS/fizzbuzz" target="_blank">Day 9 - FizzBuzz</a><br />
+     <a href="./RAS/day10" target="_blank">Day 10 &amp; 11 - JQuery</a>
     </p>
   </section>
   
