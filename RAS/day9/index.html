@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    
+  </head>
+  <body>
+    <section class="container">
+      <div class="page-header">
+        <div class="row">
+          <div class="col-lg-6">
+            <h1>
+              Code School Message Board 
+            </h1>
+          </div>
+          <div class="col-lg-6">
+            <label class="pull-right" title="Change the message view..."><input type="checkbox" id="setView" data-toggle="toggle" data-offstyle="primary" data-onstyle="primary" data-on="Table View" data-off="Original View" /></label>
+            <label class="pull-right" title="Change what type of message is shown..."><input type="checkbox" id="isImportant" data-offstyle="success" data-onstyle="warning" data-toggle="toggle" data-on="Important Only" data-off="Show All" /></label>
+            <div class="dropdown pull-right">
+              <button class="btn btn-info dropdown-toggle" type="button" id="creatorName" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="glyphicon glyphicon-user" aria-hidden="true"></i>&nbsp;<span class="caret"></span>
+              </button>
+              <ul id="creatorList" class="dropdown-menu" aria-labelledby="creatorName"></ul>
+            </div>
+            <button class="btn btn-success pull-right" type="button" onclick="addMessage()" title="Add a new comment."><i class="glyphicon glyphicon-plus-sign" aria-hidden="true"></i></button>
+          </div>
+        </div>
+      </div>
+      <section id="messagesContainer"></section>
+      <div id="page-selection"></div>
+    </section>
+    <div id="loading">
+      <div class="loading-text">
+        <img src="assets/img/spinner.svg" height="75">
+        <p>Loading messages!</p>
+      </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+    <script src="assets/js/bootpag.min.js"></script>
+    <script type="text/javascript" src="assets/js/moment.js"></script>
+    <script type="text/javascript" src="assets/js/shared.js"></script>
+    <script type="text/javascript" src="assets/js/index.js"></script>
+  </body>
+</html>
