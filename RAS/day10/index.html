@@ -1,9 +1,10 @@
 <html>
   <head>
     <link rel="stylesheet" href="assets/css/bootstrap.css">
-    <link rel="stylesheet" href="assets/css/main.css">
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
-    
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="assets/css/animate.css">
+    <link rel="stylesheet" href="assets/css/main.css">
   </head>
   <body>
     <section class="container">
@@ -23,7 +24,7 @@
               </button>
               <ul id="creatorList" class="dropdown-menu" aria-labelledby="creatorName"></ul>
             </div>
-            <button class="btn btn-success pull-right" type="button" onclick="addMessage()" title="Add a new comment."><i class="glyphicon glyphicon-plus-sign" aria-hidden="true"></i></button>
+            <button class="btn btn-success pull-right" type="button" id="addMessage" title="Add a new comment."><i class="glyphicon glyphicon-plus-sign" aria-hidden="true"></i></button>
           </div>
         </div>
       </div>
@@ -36,12 +37,15 @@
         <p>Loading messages!</p>
       </div>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
     <script src="assets/js/bootpag.min.js"></script>
+    <script src="assets/js/noty/packaged/jquery.noty.packaged.js"></script>
     <script type="text/javascript" src="assets/js/moment.js"></script>
     <script type="text/javascript" src="assets/js/shared.js"></script>
     <script type="text/javascript" src="assets/js/index.js"></script>
+    <script type="text/javascript" src="assets/js/custom.js"></script>
   </body>
 </html>
