@@ -23,40 +23,43 @@ function updateCommentsShown(pageNum) {
 function updateDropdown(selectedName){$("#creatorName").html(selectedName + '&nbsp;<span class="caret"></span>');}
 
 function loadComments(action, pageNum) {
-  toggleSpinner(true);
   var callType, byName;
   switch (action) {
     case "allImportant":
+      console.log("Show All Important Messages.");
       callType = "/important-comments";
       break;
     case "byCreator":
+      console.log("Show All Messages By Creator.");
       byName = $("#creatorName").html().slice(0,-33);
       callType ="/comments-by-name/" + byName;
       break;
     case "byCreatorImportant":
+      console.log("Show All Important Messages By Creator.");
       byName = $("#creatorName").html().slice(0,-33);
       callType ="/important-comments/" + byName;
       break;
     default:
+      console.log("Show All Messages.");
       callType = "/comments";
   }
-  if(apiUpdate){
-    console.log("Using API Return values...");
+  if(apiUpdate && action === 'all'){
+    console.log("Using API Return values.");
     showMessages(apiUpdate, pageNum);
-    toggleSpinner(false);
   } else {
-    console.log("New call to server...");
+    console.log("New call to server.");
     $.get(apiEndpointBase + callType, function(response, status){
       if(status === "success"){
-        toggleSpinner(false);
-        
+        console.log(response);
         showMessages(response, pageNum);
+        toggleSpinner(false);
       }
     });
   }
 }
 
 function addMessage() {
+  toggleSpinner(true);
   var myData = {
     comment: {
       createdBy:$("#createdBy")[0].value, 
@@ -76,9 +79,11 @@ function addMessage() {
       apiUpdate = JSON.stringify(result);
       updateCommentsShown(1);
       notyAlert('success', 'Your new message has been added to the board.');
+      toggleSpinner(false);
     },
     error: function(){
-      notyAler('error', 'Failed to add message, please try again.');
+      notyAlert('error', 'Failed to add message, please try again.');
+      toggleSpinner(false);
     }
   });
 }
@@ -94,6 +99,7 @@ function getMessage(messageId) {
 }
 
 function editMessage() {
+  toggleSpinner(true);
   var myData = {
     comment: {
       commentText:$("#editCommentText").val(), 
@@ -112,14 +118,17 @@ function editMessage() {
       apiUpdate = JSON.stringify(result);
       updateCommentsShown(1);
       notyAlert('success', 'Messsage has been updated.');
+      toggleSpinner(false);
     },
     error: function(){
        notyAlert('error', 'Failed to update message, please try again.');
+      toggleSpinner(false);
     }
   });
 }
 
 function deleteMessage(messageId) {
+  toggleSpinner(true);
   var result = confirm("Are you sure you want to delete this comment?\r\nPress OK to delete or Cancel.");
   if (result === true) {
     $.ajax({
@@ -129,9 +138,11 @@ function deleteMessage(messageId) {
         apiUpdate = JSON.stringify(result);
         updateCommentsShown(1);
         notyAlert('success', 'Message has been deleted.');
+        toggleSpinner(false);
       },
       error: function(){
         notyAlert('error', 'Failed to delete message, please try again.');
+        toggleSpinner(false);
       }
     });
   }
@@ -326,12 +337,20 @@ $(function() {
   var string = action.exec(window.location.href); // Using above RegEx to strip out the navigation
   var hostname = host.exec(window.location.href); // Using the above RegEx to strip out the hostname
   
+  toggleSpinner(true);
+  
+  $('#setView').bootstrapToggle('off');
+  $('#isImportant').bootstrapToggle('off');
+  
   $("#addMessage").click(function(){
     createModalDialog('./addMsg.html', 'add');
   });
 
   if (string) { // If there is a query string to extract
     startPage = string[0].substring(1);
+    if(startPage < 1){
+      startPage = 1;
+    }
   } else {
     startPage = 1;
   }
