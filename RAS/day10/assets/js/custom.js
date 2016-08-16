@@ -17,7 +17,7 @@ function notyAlert(type, msgTxt) {
     text: text,
     type: type,
     dismissQueue: true,
-    timeout: true,
+    timeout: 2000,
     killer: true,
     layout: 'topRight',
     closeWith: ['hover'],
