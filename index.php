@@ -10,6 +10,7 @@
   
   <title>Lou's Work - Front-End Web Development Portfolio</title>
   
+  <link rel="stylesheet" href="assets/css/font-awesome.min.css" />
   <link rel="stylesheet" href="assets/css/lou.css" />
   <link rel="stylesheet" href="assets/css/main.css" />
   
@@ -77,6 +78,17 @@
   
   <footer class="footer">
     <section class="container">
+      <span class="social">
+        <ul>
+          <li>
+            <a href="#" target="_blank" title="Linked In"><span class="glyphicon-linked_in"></span></a>
+          </li>
+          <li>
+            <a href="https://github.com/SweetLouHD" target="_blank" title="GitHub"><span class="glyphicon-github"></span></a>
+          </li>
+        </ul>
+      </span>
+      
       <article class="text-muted">Created By Lou.</article>
       <article><i>All copyrights reserved to their respective owners.</i></article>
     </section>

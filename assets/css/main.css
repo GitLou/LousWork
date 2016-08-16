@@ -2,16 +2,42 @@ section.content {
   opacity: 0; }
 
 html {
-  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f6f8f9+0,e5ebee+50,d7dee3+51,f5f7f9+100;White+Gloss */
-  background: #f6f8f9;
-  /* Old browsers */
-  background: -moz-linear-gradient(-45deg, #f6f8f9 0%, #e5ebee 50%, #d7dee3 51%, #f5f7f9 100%);
-  /* FF3.6-15 */
-  background: -webkit-linear-gradient(-45deg, #f6f8f9 0%, #e5ebee 50%, #d7dee3 51%, #f5f7f9 100%);
-  /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(135deg, #f6f8f9 0%, #e5ebee 50%, #d7dee3 51%, #f5f7f9 100%);
-  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f6f8f9', endColorstr='#f5f7f9',GradientType=1 );
-  /* IE6-9 fallback on horizontal gradient */ }
+  cursor: default;
+  background: white;
+  background: -moz-linear-gradient(-45deg, white 0%, #f3f3f3 50%, #ededed 51%, white 100%);
+  background: -webkit-linear-gradient(-45deg, white 0%, #f3f3f3 50%, #ededed 51%, white 100%);
+  background: linear-gradient(135deg, white 0%, #f3f3f3 50%, #ededed 51%, white 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffffff',GradientType=1 ); }
+
+ul.topnav {
+  background: #45484d;
+  background: -moz-linear-gradient(-45deg, #45484d 0%, black 100%);
+  background: -webkit-linear-gradient(-45deg, #45484d 0%, black 100%);
+  background: linear-gradient(135deg, #45484d 0%, black 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=1 ); }
+
+footer {
+  background: #cedce7;
+  background: -moz-linear-gradient(top, #cedce7 0%, #596a72 100%);
+  background: -webkit-linear-gradient(top, #cedce7 0%, #596a72 100%);
+  background: linear-gradient(to bottom, #cedce7 0%, #596a72 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cedce7', endColorstr='#596a72',GradientType=0 );
+  color: #000; }
+  footer .social {
+    float: right;
+    font-size: 3em; }
+    footer .social ul {
+      margin-top: -15px;
+      list-style-type: none; }
+    footer .social li {
+      float: left; }
+      footer .social li a {
+        color: rgba(75, 75, 75, 0.5); }
+        footer .social li a :hover {
+          text-decoration: none;
+          color: rgba(0, 0, 0, 0.75); }
+
+.fa {
+  font-size: 1.25em; }
 
 /*# sourceMappingURL=main.css.map */
