@@ -17,15 +17,15 @@ function notyAlert(type, msgTxt) {
     text: text,
     type: type,
     dismissQueue: true,
-    timeout: 2000,
+    timeout: 4000,
     killer: true,
     layout: 'topRight',
     closeWith: ['hover'],
     theme: 'relax',
-    maxVisible: 1,
+    maxVisible: 3,
     animation: {
-      open: 'animated fadeInRightBig',
-      close: 'animated hinge',
+      open: 'animated pulse',
+      close: 'animated fadeOut',
       easing: 'swing',
       speed: 500
     }

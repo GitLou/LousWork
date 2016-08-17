@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" id="viewport" content="target-densitydpi=high-dpi,initial-scale=1.0,user-scalable=no" />
+        <title>Document Title</title>
+        <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script  type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+        <script type="text/javascript">
+
+            var jsonSample = JSON.stringify(
+                    [{
+                            "id": 35,
+                            "commentText": "Hello World.",
+                            "createdBy": "Lou",
+                            "isImportant": false,
+                            "createdAt": "2016-07-29T18:36:39.044Z",
+                            "updatedAt": "2016-07-29T18:36:39.044Z"
+                        }, {
+                            "id": 36,
+                            "commentText": "This is all starting to come together",
+                            "createdBy": "Mark",
+                            "isImportant": false,
+                            "createdAt": "2016-07-29T19:13:54.538Z",
+                            "updatedAt": "2016-07-29T19:13:54.538Z"
+                        }, {
+                            "id": 37,
+                            "commentText": "I'm pretending to be Lou",
+                            "createdBy": "Lou",
+                            "isImportant": false,
+                            "createdAt": "2016-07-29T19:14:41.130Z",
+                            "updatedAt": "2016-07-29T19:14:41.130Z"
+                        }, {
+                            "id": 41,
+                            "commentText": "testing 123",
+                            "createdBy": "Mark",
+                            "isImportant": false,
+                            "createdAt": "2016-07-29T19:21:35.637Z",
+                            "updatedAt": "2016-07-29T19:21:35.637Z"
+                        }, {
+                            "id": 42,
+                            "commentText": "testing123456",
+                            "createdBy": "Mark",
+                            "isImportant": false,
+                            "createdAt": "2016-07-29T19:22:42.516Z",
+                            "updatedAt": "2016-07-29T19:22:42.516Z"
+                        }, {
+                            "id": 44,
+                            "commentText": "This is not important",
+                            "createdBy": "Mark",
+                            "isImportant": false,
+                            "createdAt": "2016-07-29T19:33:54.805Z",
+                            "updatedAt": "2016-07-29T19:33:54.805Z"
+                        }, {
+                            "id": 51,
+                            "commentText": "New functionality",
+                            "createdBy": "Lou",
+                            "isImportant": true,
+                            "createdAt": "2016-08-03T14:38:54.724Z",
+                            "updatedAt": "2016-08-11T21:16:05.261Z"
+                        }, {
+                            "id": 92,
+                            "commentText": "Another test",
+                            "createdBy": "Lou",
+                            "isImportant": false,
+                            "createdAt": "2016-08-11T22:18:06.022Z",
+                            "updatedAt": "2016-08-11T22:18:06.022Z"
+                        }, {
+                            "id": 29,
+                            "commentText": "hot garbage 2.0",
+                            "createdBy": "Kevin",
+                            "isImportant": true,
+                            "createdAt": "2016-07-28T21:59:35.145Z",
+                            "updatedAt": "2016-08-04T21:41:16.361Z"
+                        }, {
+                            "id": 54,
+                            "commentText": "please work",
+                            "createdBy": "Dana",
+                            "isImportant": false,
+                            "createdAt": "2016-08-04T23:24:02.682Z",
+                            "updatedAt": "2016-08-04T23:24:02.682Z"
+                        }, {
+                            "id": 93,
+                            "commentText": "test comment",
+                            "createdBy": "mark",
+                            "isImportant": false,
+                            "createdAt": "2016-08-11T22:32:00.067Z",
+                            "updatedAt": "2016-08-11T22:32:00.067Z"
+                        }, {
+                            "id": 78,
+                            "commentText": "Testing modal dialog",
+                            "createdBy": "Lou",
+                            "isImportant": false,
+                            "createdAt": "2016-08-10T01:22:10.015Z",
+                            "updatedAt": "2016-08-10T01:22:10.015Z"
+                        }, {
+                            "id": 94,
+                            "commentText": "test comment",
+                            "createdBy": "mark",
+                            "isImportant": true,
+                            "createdAt": "2016-08-11T22:32:24.534Z",
+                            "updatedAt": "2016-08-11T22:32:24.534Z"
+                        }, {
+                            "id": 61,
+                            "commentText": "wooo",
+                            "createdBy": "yes",
+                            "isImportant": false,
+                            "createdAt": "2016-08-09T22:04:42.671Z",
+                            "updatedAt": "2016-08-11T15:51:51.448Z"
+                        }, {
+                            "id": 81,
+                            "commentText": "Deleted files. Just checking if it still works",
+                            "createdBy": "Mark",
+                            "isImportant": false,
+                            "createdAt": "2016-08-11T19:26:36.869Z",
+                            "updatedAt": "2016-08-11T19:26:36.869Z"
+                        }, {
+                            "id": 83,
+                            "commentText": "Trying it again",
+                            "createdBy": "Mark",
+                            "isImportant": false,
+                            "createdAt": "2016-08-11T20:29:41.439Z",
+                            "updatedAt": "2016-08-11T20:29:41.439Z"
+                        }, {
+                            "id": 107,
+                            "commentText": "New!",
+                            "createdBy": "Dana",
+                            "isImportant": false,
+                            "createdAt": "2016-08-11T23:03:50.597Z",
+                            "updatedAt": "2016-08-11T23:03:50.597Z"
+                        }, {
+                            "id": 112,
+                            "commentText": "One more time",
+                            "createdBy": "Dana",
+                            "isImportant": false,
+                            "createdAt": "2016-08-11T23:23:49.398Z",
+                            "updatedAt": "2016-08-11T23:23:49.398Z"
+                        }, {
+                            "id": 115,
+                            "commentText": "Try this",
+                            "createdBy": "Dana",
+                            "isImportant": false,
+                            "createdAt": "2016-08-11T23:32:54.382Z",
+                            "updatedAt": "2016-08-11T23:32:54.382Z"
+                        }]
+                    );
+
+
+
+        </script>
+        <style type="text/css">
+
+        </style>
+    </head>
+    <body>
+        <div id="result"></div>
+        <script>
+function filterComments(jsonString, filterBy){
+  var byName, tmpJson, tmp;
+  var destringify = JSON.parse(jsonString);
+  byName ="Lou";
+  switch(filterBy){
+    case "allImportant":
+      //notyAlert('info', 'Showing All Important Messages');
+      response = $(destringify).filter(function(i, n){
+        return   n.isImportant !== false;
+      });
+      break;
+    case "byCreator":
+      //byName = $("#creatorName").html().slice(0,-33);
+      //notyAlert('info', 'Showing Messages by ' + byName + '.');
+      response = $(destringify).filter(function(i, n){
+        return   n.createdBy === byName;
+      });
+      break;
+    case "byCreatorImportant":
+      //byName = $("#creatorName").html().slice(0,-33);
+      //notyAlert('info', 'Showing All Important Messages by ' + byName + '.');
+      response = $(destringify).filter(function(i, n){
+        return   n.createdBy === byName && n.isImportant !== false;
+      });
+      break;
+    default:
+      //notyAlert('info', 'Showing All Messages.');
+      response = destringify;
+      
+  }
+  
+  tmp = "[";
+  $.each(response, function(i, v) {
+    tmp += '{';
+    tmp += '"commentText": "' + response[i].commentText + '", ';
+    tmp += '"createdAt": "' + response[i].createdAt + '", ';
+    tmp += '"createdBy": "' + response[i].createdBy + '", ';
+    tmp += '"id": ' + response[i].id + ', ';
+    tmp += '"isImportant": ' + response[i].isImportant + ', ';
+    tmp += '"updatedAt": "' + response[i].updatedAt + '"';
+    tmp += '},';
+  });
+  tmp = tmp.substring(0, tmp.length - 1);
+  tmp += ']';
+  
+  return(tmp);
+}
+
+var result = filterComments(jsonSample, "byCreatorImportant");
+          $("#result").html(result);
+
+        </script>
+    </body>
+</html>

@@ -22,36 +22,68 @@ function updateCommentsShown(pageNum) {
 
 function updateDropdown(selectedName){$("#creatorName").html(selectedName + '&nbsp;<span class="caret"></span>');}
 
-function loadComments(action, pageNum) {
-  var callType, byName;
-  switch (action) {
+function filterComments(jsonString, filterBy){
+  var byName, tmpJson, tmp;
+  var destringify = JSON.parse(jsonString);
+  //byName ="Lou";
+  switch(filterBy){
     case "allImportant":
-      console.log("Show All Important Messages.");
-      callType = "/important-comments";
+      notyAlert('info', 'Showing All Important Messages');
+      response = $(destringify).filter(function(i, n){
+        return   n.isImportant !== false;
+      });
       break;
     case "byCreator":
-      console.log("Show All Messages By Creator.");
       byName = $("#creatorName").html().slice(0,-33);
-      callType ="/comments-by-name/" + byName;
+      notyAlert('info', 'Showing Messages by ' + byName + '.');
+      response = $(destringify).filter(function(i, n){
+        return   n.createdBy === byName;
+      });
       break;
     case "byCreatorImportant":
-      console.log("Show All Important Messages By Creator.");
       byName = $("#creatorName").html().slice(0,-33);
-      callType ="/important-comments/" + byName;
+      notyAlert('info', 'Showing All Important Messages by ' + byName + '.');
+      response = $(destringify).filter(function(i, n){
+        return   n.createdBy === byName && n.isImportant !== false;
+      });
+      console.log(response);
       break;
     default:
-      console.log("Show All Messages.");
-      callType = "/comments";
+      notyAlert('info', 'Showing All Messages.');
+      response = destringify;
+      
   }
-  if(apiUpdate && action === 'all'){
+  
+  tmp = '[';
+  $.each(response, function(i, v) {
+    tmp += '{';
+    tmp += '"commentText": "' + response[i].commentText + '", ';
+    tmp += '"createdAt": "' + response[i].createdAt + '", ';
+    tmp += '"createdBy": "' + response[i].createdBy + '", ';
+    tmp += '"id": ' + response[i].id + ', ';
+    tmp += '"isImportant": ' + response[i].isImportant + ', ';
+    tmp += '"updatedAt": "' + response[i].updatedAt + '"';
+    tmp += '},';
+  });
+  tmp = tmp.substring(0, tmp.length - 1);
+  tmp += ']';
+  
+  return(tmp);
+}
+
+function loadComments(action, pageNum) {
+  var callType, byName, z;
+  if(apiUpdate){
     console.log("Using API Return values.");
-    showMessages(apiUpdate, pageNum);
+    z = filterComments(apiUpdate, action);
+    showMessages(JSON.parse(z), pageNum);
   } else {
     console.log("New call to server.");
-    $.get(apiEndpointBase + callType, function(response, status){
-      if(status === "success"){
-        console.log(response);
-        showMessages(response, pageNum);
+    $.get(apiEndpointBase + '/comments', function(response, status){
+      if(status === 'success'){
+        apiUpdate = JSON.stringify(response);
+        z = filterComments(apiUpdate, action);
+        showMessages(JSON.parse(z), pageNum);
         toggleSpinner(false);
       }
     });
@@ -293,6 +325,7 @@ function showMessages(messages, pageNum) {
         );
       }
     }
+  console.log(" ");
 }
 
 function createModalDialog(url, type){
@@ -381,8 +414,10 @@ $(function() {
   $("#setView").change(function() {
     if (this.checked) {
       type = "table";
+      notyAlert('info', 'Displaying as a table.');
     } else {
       type = "original";
+      notyAlert('info', 'Displaying in the original format.');
     }
     updateCommentsShown(startPage);
   });

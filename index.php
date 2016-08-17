@@ -81,7 +81,7 @@
       <span class="social">
         <ul>
           <li>
-            <a href="#" target="_blank" title="Linked In"><span class="glyphicon-linked_in"></span></a>
+            <a href="https://www.linkedin.com/in/louis-garrett-64686519" target="_blank" title="Linked In"><span class="glyphicon-linked_in"></span></a>
           </li>
           <li>
             <a href="https://github.com/SweetLouHD" target="_blank" title="GitHub"><span class="glyphicon-github"></span></a>
