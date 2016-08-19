@@ -137,14 +137,22 @@ nav ul{
   padding: 0;
   text-align:center;
   flex: 1;
+  overflow:auto;
 }
 
-nav ul li {
+nav ol {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  text-align:center;
+}
+
+nav ul li, nav ol li {
     display: block;
     width: 100%;
 }
 
-nav ul li.brand img {
+nav ol li.brand img {
   width:100%;
   height:auto;
 }
@@ -195,6 +203,7 @@ nav > ul > li.filter > label.headRow{
 }
 
 nav > ul > li.filter > label > select {
+  padding:0px;
   position:relative;
   width:60%;
 }
