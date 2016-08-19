@@ -1,0 +1,229 @@
+<!doctype HTML>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <link rel="shortcut icon" type="image/png" href="assets/img/favicon.png"/>
+  <title>'Burgh Food</title>
+  <link rel="stylesheet" href="assets/css/custom.css" />
+</head>
+
+<body>
+  <section class="container">
+    <article id="result" class="scrollbar">
+      
+<!-- STATIC DATA -->
+      
+      <div class="tile">
+        <span class="placeName">Place Name Here</span>
+        <img src="assets/img/stock/barfood.png" />
+        <button class="hide">Hide</button>
+        <button class="dislike">Dislike</button>
+        <button class="like">Like</button>
+      </div>
+      <div class="tile">
+        <span class="placeName">Place Name Here</span>
+        <img src="assets/img/stock/breakfast.png" />
+        <button class="hide">Hide</button>
+        <button class="dislike">Dislike</button>
+        <button class="like">Like</button>
+      </div>
+      <div class="tile">
+        <span class="placeName">Place Name Here</span>
+        <img src="assets/img/stock/chinese.png" />
+        <button class="hide">Hide</button>
+        <button class="dislike">Dislike</button>
+        <button class="like">Like</button>
+      </div>
+      <div class="tile">
+        <span class="placeName">Place Name Here</span>
+        <img src="assets/img/stock/coffee.png" />
+        <button class="hide">Hide</button>
+        <button class="dislike">Dislike</button>
+        <button class="like">Like</button>
+      </div>
+      <div class="tile">
+        <span class="placeName">Place Name Here</span>
+        <img src="assets/img/stock/dessert.png" />
+        <button class="hide">Hide</button>
+        <button class="dislike">Dislike</button>
+        <button class="like">Like</button>
+      </div>
+      <div class="tile">
+        <span class="placeName">Place Name Here</span>
+        <img src="assets/img/stock/fastfood.png" />
+        <button class="hide">Hide</button>
+        <button class="dislike">Dislike</button>
+        <button class="like">Like</button>
+      </div>
+      <div class="tile">
+        <span class="placeName">Place Name Here</span>
+        <img src="assets/img/stock/french.png" />
+        <button class="hide">Hide</button>
+        <button class="dislike">Dislike</button>
+        <button class="like">Like</button>
+      </div>
+      <div class="tile">
+        <span class="placeName">Place Name Here</span>
+        <img src="assets/img/stock/german.png" />
+        <button class="hide">Hide</button>
+        <button class="dislike">Dislike</button>
+        <button class="like">Like</button>
+      </div>
+      <div class="tile">
+        <span class="placeName">Place Name Here</span>
+        <img src="assets/img/stock/hungarian.png" />
+        <button class="hide">Hide</button>
+        <button class="dislike">Dislike</button>
+        <button class="like">Like</button>
+      </div>
+      <div class="tile">
+        <span class="placeName">Place Name Here</span>
+        <img src="assets/img/stock/italian.png" />
+        <button class="hide">Hide</button>
+        <button class="dislike">Dislike</button>
+        <button class="like">Like</button>
+      </div>
+      <div class="tile">
+        <span class="placeName">Place Name Here</span>
+        <img src="assets/img/stock/mexican.png" />
+        <button class="hide">Hide</button>
+        <button class="dislike">Dislike</button>
+        <button class="like">Like</button>
+      </div>
+      <div class="tile">
+        <span class="placeName">Place Name Here</span>
+        <img src="assets/img/stock/pizza.png" />
+        <button class="hide">Hide</button>
+        <button class="dislike">Dislike</button>
+        <button class="like">Like</button>
+      </div>
+      <div class="tile">
+        <span class="placeName">Place Name Here</span>
+        <img src="assets/img/stock/steak.png" />
+        <button class="hide">Hide</button>
+        <button class="dislike">Dislike</button>
+        <button class="like">Like</button>
+      </div>
+      <div class="tile">
+        <span class="placeName">Place Name Here</span>
+        <img src="assets/img/stock/thai.png" />
+        <button class="hide">Hide</button>
+        <button class="dislike">Dislike</button>
+        <button class="like">Like</button>
+      </div>
+      
+<!-- END STATIC DATA -->
+      
+    </article>
+    <nav>
+      <ul>
+        <li class="brand"><img src="assets/img/logo.png" id="siteLogo" /></li>
+        <div class="sign">
+          <span class="welcome">You are not signed in.</span>
+          Sign In >
+        </div>
+        <li class="seperator"><br /></li>
+        <div class="about">
+          We even have room for an about blurb to explain the reason for the app.
+          <br /><br />
+          Bacon ipsum dolor amet venison strip steak t-bone, doner frankfurter ground round ham meatloaf ball tip. Turkey beef ribs shoulder pork loin meatloaf ham picanha boudin spare ribs jerky andouille. Andouille strip steak short ribs kielbasa, jerky pork belly beef ribs kevin pork sausage chuck biltong meatloaf bresaola.
+          <br /><br />
+          Does your lorem ipsum text long for something a little meatier? Give our generator a try… it’s tasty! <a href="http://baconipsum.com/" target="_blank">Bacon Ipsum...</a>
+        </div>
+        <li class="seperator"><br /></li>
+        <li class="filter">
+          <input placeholder="Enter your search term..." type="search" value="" name="search" id="search">
+          <input type="submit" value="Search" />
+        </li>
+        <li class="seperator"><br /></li>
+        <li class="filter">
+          <label class="headRow">Filters:</label>
+        </li>
+        <li class="filter">
+          <label for="cuisine">Cuisine:&nbsp;<span class="help" title="Help text here...">?</span>&nbsp;
+            <select id="cuisine">
+              <option value="any">Any</option>
+              <option value="barfood">Bar Food</option>
+              <option value="breakfast">Breakfast</option>
+              <option value="chinese">Chinese</option>
+              <option value="coffee">Coffee</option>
+              <option value="dessert">Dessert</option>
+              <option value="fastfood">Fast Food</option>
+              <option value="french">French</option>
+              <option value="german">German</option>
+              <option value="hungarian">Hungarian</option>
+              <option value="italian">Italian</option>
+              <option value="mexican">Mexican</option>
+              <option value="pizza">Pizza</option>
+              <option value="steak">Steak</option>
+              <option value="thai">Thai</option>
+            </select>
+          </label>
+        </li>
+        <li class="filter">
+          <label for="type">Type:&nbsp;<span class="help" title="Help text here...">?</span>&nbsp;
+            <select id="type">
+              <option value="any">Any</option>
+              <option value="eatin">Eat-In</option>
+              <option value="takeout">Take-Out</option>
+              <option value="delivery">Delivery</option>
+            </select>
+          </label>
+        </li>
+        <li class="filter">
+          <label for="cost">Cost:&nbsp;<span class="help" title="Help text here...">?</span>&nbsp;
+            <select id="cost">
+              <option value="any">Any</option>
+              <option value="low">$</option>
+              <option value="medium">$$</option>
+              <option value="high">$$$</option>
+              <option value="stupid">$$$$+</option>
+            </select>
+          </label>
+        </li>
+<!-- START SHOW ONLY IF LOGGED IN -->
+        <li class="seperator"><br /></li>
+        <li class="filter">
+          <label class="headRow">Additional Filters:<span class="manage">Manage List</span></label>
+        </li>
+        <li class="filter">
+          <label for="hideliked">Hide Liked:&nbsp;<span class="help" title="Help text here...">?</span>&nbsp;
+            <select id="hideliked">
+              <option value="no">No</option>
+              <option value="yes">Yes</option>
+            </select>
+          </label>
+        </li>
+        <li class="filter">
+          <label for="hidedisliked">Hide Disliked:&nbsp;<span class="help" title="Help text here...">?</span>&nbsp;
+            <select id="hidedisliked">
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+          </label>
+        </li>
+        <li class="filter">
+          <label for="showhidden">Show  Hidden:&nbsp;<span class="help" title="Help text here...">?</span>&nbsp;
+            <select id="showhidden">
+              <option value="no">No</option>
+              <option value="yes">Yes</option>
+            </select>
+          </label>
+        </li>
+<!-- STOP SHOW ONLY IF LOGGED IN -->
+      </ul>
+      <div class="sign">
+          <span class="welcome">Welcome, Username.</span>
+          Sign Out >
+        </div>
+      <footer>
+        Created by RAS Code School.
+        <span class="disclaimer">All copyrights reserved to their respective owners.</span>
+      </footer>
+    </nav>
+  </section>
+</body>
+
+</html>
