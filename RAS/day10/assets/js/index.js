@@ -31,20 +31,41 @@ function filterComments(jsonString, filterBy) {
   switch (filterBy) {
     case "allImportant":
       notyAlert('info', 'Showing All Important Messages');
-      response = $(destringify).filter(function(i, n) {
+
+      //v1
+      /*response = $(destringify).filter(function(i, n) {
         return n.isImportant !== false;
-      });
+      });*/
+
+      //v2 recommended by w3schools
+      response = [];
+      for (var i = 0; i < destringify.length; i++) {
+        if (destringify[i].isImportant) {
+          response.push(destringify[i]);
+        }
+      }
       break;
     case "byCreator":
       byName = $("#creatorName").html().slice(0, -33);
       notyAlert('info', 'Showing Messages by ' + byName + '.');
-      response = $(destringify).filter(function(i, n) {
+
+      //v1
+      /*response = $(destringify).filter(function(i, n) {
         return n.createdBy === byName;
-      });
+      });*/
+
+      //v2 recommended by w3schools
+      response = [];
+      for (var i = 0; i < destringify.length; i++) {
+        if (destringify[i].createdBy === byName) {
+          response.push(destringify[i]);
+        }
+      }
       break;
     case "byCreatorImportant":
       byName = $("#creatorName").html().slice(0, -33);
       notyAlert('info', 'Showing All Important Messages by ' + byName + '.');
+
       //v1 following above format
       /*response = $(destringify).filter(function(i, n){
         return   n.createdBy === byName && n.isImportant !== false;
@@ -57,7 +78,6 @@ function filterComments(jsonString, filterBy) {
           response.push(destringify[i]);
         }
       }
-      console.log(response);
       break;
     default:
       notyAlert('info', 'Showing All Messages.');
@@ -93,12 +113,13 @@ function loadComments(action, pageNum) {
     $.get(apiEndpointBase + '/comments', function(response, status) {
       if (status === 'success') {
         apiUpdate = JSON.stringify(response);
-        z = filterComments(apiUpdate, action);
-        showMessages(JSON.parse(z), pageNum);
+        //z = filterComments(apiUpdate, action);
+        showMessages(response, pageNum);
         toggleSpinner(false);
       }
     });
   }
+  
 }
 
 function addMessage() {
@@ -143,6 +164,7 @@ function getMessage(messageId) {
 
 function editMessage() {
   toggleSpinner(true);
+
   var myData = {
     comment: {
       commentText: $("#editCommentText").val(),
@@ -163,8 +185,9 @@ function editMessage() {
       notyAlert('success', 'Messsage has been updated.');
       toggleSpinner(false);
     },
-    error: function() {
+    error: function(xhr, status, error) {
       notyAlert('error', 'Failed to update message, please try again.');
+      console.log(xhr.responseText);
       toggleSpinner(false);
     }
   });
@@ -196,7 +219,7 @@ function toggleSpinner(isVisible) {
 }
 
 function showMessages(messages, pageNum) {
-  var i, message, n, x, y, h1, h2, h3, c1, c2, c3, t1, t2, t3, messageData, msgDate;
+  var i, message, n, x, y, h1, h2, h3, c1, c2, c3, t1, t2, t3, messageData, msgDate, maxLen, totalShown, maxVis;
 
   if (!pageNum) {
     pageNum = 0;
@@ -218,6 +241,13 @@ function showMessages(messages, pageNum) {
   });
 
   messagesContainer.html("");
+  
+  if(messages.length % perPage){
+        maxLen = messages.length;
+        
+      } else {
+         maxLen = pageNum * perPage;
+      }
 
   switch (type) {
     case "table":
@@ -232,7 +262,7 @@ function showMessages(messages, pageNum) {
       h3 = $('<th class="col-lg-2">Actions</th>');
       $('#headRow').append(h1, h2, h3);
 
-      for (i = ((pageNum * perPage) - perPage); i < (pageNum * perPage); i++) {
+      for (i = ((pageNum * perPage) - perPage); i < maxLen; i++) {
         message = messages[i];
 
         if (message.createdAt === message.updatedAt) {
@@ -249,29 +279,27 @@ function showMessages(messages, pageNum) {
         c3 = $('<td class="actions col-lg-2"></td>').html('<button class="btn btn-primary" id="editMessage' + message.id + '"><i class="glyphicon glyphicon-pencil"></i></button>' + '<button class="btn btn-danger" id="deleteMessage' + message.id + '"><i class="glyphicon glyphicon-trash"></i></button>');
         $("#r" + i).append(c1, c2, c3);
 
-        var s = message.id;
+        var v = message.id;
         $("#editMessage" + message.id).click(
-          (function() {
-            var t = s;
+          (function(v) {
             return function() {
               createModalDialog('./editMsg.html', 'edit');
-              getMessage(t);
+              getMessage(v);
             }
-          })(s)
+          })(v)
         );
         $("#deleteMessage" + message.id).click(
-          (function() {
-            var t = s;
+          (function(v) {
             return function() {
-              deleteMessage(t);
+              deleteMessage(v);
             }
-          })(s)
+          })(v)
         );
       }
       break;
 
     default:
-      for (i = ((pageNum * perPage) - perPage); i < (pageNum * perPage); i++) {
+      for (i = ((pageNum * perPage) - perPage); i < maxLen; i++) {
         message = messages[i];
         var messageDiv = $('<div class="message"></div>'); //document.createElement("div");
         var messageTextDiv = $('<div></div>'); //document.createElement("div");
@@ -300,28 +328,34 @@ function showMessages(messages, pageNum) {
         $("#messagesContainer").append(messageDiv);
         var u = message.id;
         $("#editMessage" + message.id).click(
-          (function() {
-            var v = u;
+          (function(u) { //Imediately Invoked Function Expression
             return function() {
               createModalDialog('./editMsg.html', 'edit');
-              getMessage(v);
+              getMessage(u);
             }
           })(u)
         );
         $("#deleteMessage" + message.id).click(
-          (function() {
-            var v = u;
+          (function(u) {
             return function() {
-              deleteMessage(v);
+              deleteMessage(u);
             }
           })(u)
         );
       }
   }
   
+  if(messages.length % perPage){
+    totalShown = messages.length;
+    maxVis = 1;
+  } else {
+    totalShown = messages.length / perPage;
+    maxVis = 5;
+  }
+  
   $('#page-selection').bootpag({
-    total: messages.length / perPage,
-    maxVisible: 5,
+    total: totalShown,
+    maxVisible: maxVis,
     page: pageNum,
     href: "#{{number}}",
     leaps: true,
@@ -335,44 +369,47 @@ function showMessages(messages, pageNum) {
     prevClass: 'prev',
     lastClass: 'last',
     firstClass: 'first'
-  }).on("page", function(event, num){
+  }).on("page", function(event, num) {
     updateCommentsShown(num);
   });
 }
 
 function createModalDialog(url, type) {
   $('body').css("overflow", "hidden");
-  $("#dialog").load(url, function() {
-    $("#dialog").dialog({
-      autoOpen: true,
-      width: 800,
-      modal: true,
-      buttons: {
-        Submit: function() {
-          switch (type) {
-            case 'edit':
-              editMessage();
-              break;
-            default:
-              addMessage();
+  $("#dialog").load(url, function(response, status, xhr) {
+    if (status === "success") {
+      $("#dialog").dialog({
+        autoOpen: true,
+        width: 800,
+        modal: true,
+        buttons: {
+          Submit: function() {
+            switch (type) {
+              case 'edit':
+                editMessage();
+                break;
+              default:
+                addMessage();
+            }
+            $(this).dialog("close");
+            $('body').css("overflow", "visible");
+          },
+          Cancel: function() {
+            $(this).dialog("close");
+            $('body').css("overflow", "visible");
           }
-          $(this).dialog("close");
-          $('body').css("overflow", "visible");
-        },
-        Cancel: function() {
-          $(this).dialog("close");
-          $('body').css("overflow", "visible");
         }
+      });
+      switch (type) {
+        case 'edit':
+          $('#dialog').dialog('option', 'title', 'Edit message');
+          break;
+        default:
+          $('#dialog').dialog('option', 'title', 'Add a message');
       }
-    });
-    switch (type) {
-      case 'edit':
-        $('#dialog').dialog('option', 'title', 'Edit message');
-        break;
-      default:
-        $('#dialog').dialog('option', 'title', 'Add a message');
     }
   });
+
 }
 
 $(function() {
