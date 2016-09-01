@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<title>foodHarmony | Find the perfect restaurant for you | Pittsburgh</title>
+	<link rel="shortcut icon" href="favicon.ico">
 	<link rel="stylesheet" type="text/css" href="vendors/css/normalize.css">
 	<link rel="stylesheet" type="text/css" href="vendors/css/grid.css">
 	<link rel="stylesheet" type="text/css" href="resources/css/style.css">
@@ -19,7 +21,9 @@
 				<ul class="mainNav">
 					<li><a href="#search">Search</a></li>
 					<li><a href="#suggest">Add</a></li>
-					<li><a href="#">Join / Login</a></li>
+					<li><a href="contact.html">Contact Us</a></li>
+					<li><a href="Login.html">Join / Login</a></li>
+					<li>Welcome <span id='usersName'></span>!</li>
 				</ul>
 			</div>
 		</div>
@@ -29,7 +33,8 @@
 			<a class="button buttonFull" href="#search">Find a restaurant</a>
 			<a class="button buttonGhost" href="#suggest">Add a restaurant</a>
 		</div>
-	</header><!-- /header -->
+	</header>
+	<!-- /header -->
 
 	<section id="search" class="searchSection">
 		<div class="row">
@@ -43,41 +48,24 @@
 					<div class="searchFormInnerContainer">
 						<div class="row">
 							<label for="restaurantTypeSearch">I'm feeling:</label>
-							<select id="restaurantTypeSearch" name="typeOfRestaurantSearch">
+							<select id="restaurantTypeSearch">
 								<option value="">Up for anything</option>
-								<option value="fancy">Fancy</option>
-								<option value="casual">Casual</option>
-								<option value="nightIn">Like a night in</option>
 							</select>
 						</div>
 						<div class="row">
 							<label for="foodTypeSearch">I'm looking for:</label>
-							<select id="foodTypeSearch" name="typeOfFoodSearch">
-								<option value="">A surprise</option>
-								<option value="italian">Italian</option>
-								<option value="chinese">Chinese</option>
-								<option value="mexican">Mexican</option>
-								<option value="indian">Indian</option>
-								<option value="cajun">Cajun</option>
-								<option value="soul">Soul food</option>
-								<option value="thai">Thai</option>
-								<option value="greek">Greek</option>
-								<option value="japanese">Japanese</option>
-								<option value="american">American</option>
-								<option value="mediterranean">Mediterranean</option>
-								<option value="german">German</option>
-								<option value="caribbean">Caribbean</option>
-								<option value="french">French</option>
-							</select>
+							<select id="foodTypeSearch">
+					      <option value="">A surprise</option>
+					    </select>
 						</div>
 						<div class="row">
 							<label for="costLevelSearch">I'm willing to spend:</label>
-							<select id="costLevelSearch" name="levelOfCostSearch">
-								<option value="">Whatever it takes</option>
-								<option value="$">$</option>
-								<option value="$$">$$</option>
-								<option value="$$$">$$$</option>
-								<option value="$$$$">$$$$</option>
+							<select id="costLevelSearch">
+								<option value="5">Whatever it takes</option>
+								<option value="1">$</option>
+								<option value="2">$$</option>
+								<option value="3">$$$</option>
+								<option value="4">$$$$</option>
 							</select>
 						</div>
 						<div class="row">
@@ -94,7 +82,7 @@
 		<div class="row">
 			<p>Want to customize your foodHarmony experience?<br>Refine your matches by:</p>
 			<p class="bulletPoints"><img class="checkMark" src="resources/images/red-check.png" alt="red check mark">Creating favorite lists</p>
-			<p class="bulletPoints"><img class="checkMark" src="resources/images/red-check.png" alt="red check mark">Hide restaurants you're not into</p>
+			<p class="bulletPoints"><img class="checkMark" src="resources/images/red-check.png" alt="red check mark">Hiding restaurants you're not into</p>
 			<a id="signUpButton" class="button buttonFull" href="#">Join now</a>
 		</div>
 	</section>
@@ -108,12 +96,12 @@
 				<form class="suggestForm">
 					<p class="required">*Required</p>
 
-					<label for="restName">Restaurant name*</label>
+					<label class="bold" for="restName">Restaurant name*</label>
 					<input id="restName" type="text" name="restName" value="">
 
 					<div class="row">
 						<div class="col span-3-of-5">
-							<label for="streetAddress">Street address*</label>
+							<label class="bold" for="streetAddress">Street address*</label>
 							<input id="streetAddress" type="text" name="streetAddress" value="">
 						</div>
 						<div class="col span-2-of-5">
@@ -133,49 +121,50 @@
 						</div>
 					</div>
 
-					<div class="row">
-						<label for="restaurantTypeSuggestion">Type of restaurant*</label>
-						<select id="restaurantTypeSuggestion" name="typeOfRestaurantSuggestion">
-							<option value="fancy">Fancy</option>
-							<option value="casual">Casual</option>
-							<option value="nightIn">Like a night in</option>
-						</select>
+					<div id="restaurantTypeContainer">
+						<label class="bold">Type of restaurant*</label>
+					</div>
+
+					<div id="foodTypeContainer">
+						<label class="bold">Type of food*</label>
 					</div>
 
 					<div class="row">
-						<label for="foodTypeSuggestion">Type of food*</label>
-						<select id="foodTypeSuggestion" name="typeOfFoodSuggestion">
-							<option value="italian">Italian</option>
-							<option value="chinese">Chinese</option>
-							<option value="mexican">Mexican</option>
-							<option value="indian">Indian</option>
-							<option value="cajun">Cajun</option>
-							<option value="soul">Soul food</option>
-							<option value="thai">Thai</option>
-							<option value="greek">Greek</option>
-							<option value="japanese">Japanese</option>
-							<option value="american">American</option>
-							<option value="mediterranean">Mediterranean</option>
-							<option value="german">German</option>
-							<option value="caribbean">Caribbean</option>
-							<option value="french">French</option>
-						</select>
+						<label class="bold">Cost*</label>
+						<div class="row checkboxContainer">
+							<div class="col span-1-of-4">
+								<input class="checkbox" id="costLevelOneCheck" type="checkbox" name="costLevelOne" value="costLevelOne">
+								<label class="checkboxLabel" for="costLevelOneCheck">$</label>
+							</div>
+							<div class="col span-1-of-4">
+								<input class="checkbox" id="costLevelTwoCheck" type="checkbox" name="costLevelTwo" value="costLevelTwo">
+								<label class="checkboxLabel" for="costLevelTwoCheck">$$</label>
+							</div>
+							<div class="col span-1-of-4">
+								<input class="checkbox" id="costLevelThreeCheck" type="checkbox" name="costLevelThree" value="costLevelThree">
+								<label class="checkboxLabel" for="costLevelThreeCheck">$$$</label>
+							</div>
+							<div class="col span-1-of-4">
+								<input class="checkbox" id="costLevelFourCheck" type="checkbox" name="costLevelFour" value="costLevelFour">
+								<label class="checkboxLabel" for="costLevelFourCheck">$$$$</label>
+							</div>
+						</div>
 					</div>
 
 					<div class="row">
-						<label for="costLevelSuggestion">Cost*</label>
-						<select id="costLevelSuggestion" name="levelOfCostSuggestion">
-							<option value="$">$</option>
-							<option value="$$">$$</option>
-							<option value="$$$">$$$</option>
-							<option value="$$$$">$$$$</option>
-						</select>
+						<button id="suggestButton" class="searchButton" type="button" onclick='addRestaurant()'>Add your match</button>
 					</div>
-
-					<div class="row">
-						<button id="suggestButton" class="searchButton" type="button">Add your match</button>
+					<div id='addRestaurantModal' class='modal'>
+						<div class='modalContent'>
+							<div class='modalHeader'>
+								<span class='close'>x</span>
+								<h2>Thank you!</h2>
+							</div>
+							<div class='modalBody'>
+								<p>Thank you for adding a new restaurant to our system.<br> Every restaurant you add helps another foodHarmony user find their perfect match!</p>
+							</div>
+						</div>
 					</div>
-
 				</form>
 			</div>
 		</div>
@@ -188,6 +177,11 @@
 		</div>
 	</footer>
 
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+	<script src="resources/js/api-variables.js" type="text/javascript" charset="utf-8"></script>
+	<script src="resources/js/script.js" type="text/javascript" charset="utf-8"></script>
+	<script src="resources/js/foodHarmony.js"type="text/javascript" charset="utf-8"></script>
 </body>
 
 

@@ -65,19 +65,6 @@ html {
   color: #FFF;
 }
 
-.ui-widget-overlay {
-	background: repeating-linear-gradient(
-  	45deg,
-  	#CCC,
-  	#CCC 30px,
-  	#AAA 30px,
-  	#AAA 60px
-	);
-  background-color:rgba(173, 0, 13, 1);
-  opacity: 0.5;
-	filter: Alpha(Opacity=5); /* support: IE8 */
-}
-
 h3.headline{
 	border-bottom: #cf000f 2px solid;
 }
@@ -88,6 +75,10 @@ h3.headline{
 	height:100px;
 	bottom:0 !important;
 	left:0 !important;
+}
+
+#welcomeItem{
+	display: none;
 }
 
 
@@ -102,15 +93,16 @@ padding:20px;
 }
 
 .result > div.restaurantLink:hover {
-  background-color: rgba(255,0,0,0.10);
+  background-color: #EFEFEF;
   border-radius: 5px;
   padding:0px;
   margin:0px;
+	box-shadow: 2px 2px 4px #ccc;
 }
 
 .result > div > div.restaurantName{
   text-align:center;
-  cursor:alias;
+  cursor:pointer;
   font-weight:bold;
   white-space: nowrap;
   width: auto;
@@ -125,10 +117,11 @@ padding:20px;
 
 .result > div > div.restaurantImage > img{
   position:relative;
-  cursor:alias;
+  cursor:pointer;
   width:100%;
   height:auto;
-  padding:2px;
+  padding:5px;
+	margin-bottom:-2px;
 }
 
 .result > div.restaurantActions > span.pull-right {

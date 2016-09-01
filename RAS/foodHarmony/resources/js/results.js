@@ -8,109 +8,16 @@
  *  - 2 column = 4 per page
  *  - 1 column = 1 per page
  *
- * Setting Filters:
- *  Use POST data from index.html to determine initial filters.
- *
  * API Calls:
  *  Create API calls where mentioned below to send/receive/update assets
  *
- * Filtering results from API
- *  Write code to filter results from API according to the defined filters
+ * Feature: Make modal width responsive
+ * Pro(s): Looks better on all screen/window sizes
+ * Con(s): More work
  */
 
 /** Global Variables */
-var resultsContainer = $("#results");
-var resultLayout = 3;
-var perPage = 9;
-var filterType,filterCuisine,filterCost;
-var apiResult = [];
-
-/** Stock Images */
-var stockImageLocation = "resources/images/stock/";
-var stockImages = [
-  ['all','_misc.png'],
-  ['bar','barfood.png'],
-  ['breakfast','breakfast.png'],
-  ['chinese','chinese.png'],
-  ['coffee','coffee.png'],
-  ['dessert','dessert.png'],
-  ['fast','fastfood.png'],
-  ['french','french.png'],
-  ['german','german.png'],
-  ['hungarian','hungarian.png'],
-  ['italian','italian.png'],
-  ['mexican','mexican.png'],
-  ['pizza','pizza.png'],
-  ['steak','steak.png'],
-  ['thai','thai.png']
-];
-
-/** START TEST API DATA */
-apiResult = [{
-  id: 0,
-  types: ['casual', 'nightin'],
-  cusines: ['bar', 'italian'],
-  cost: 3,
-  name: "Bocktown Beer & Grill",
-  image: null,
-  likes: 100,
-  dislikes: 5
-}, {
-  id: 1,
-  types: ['casual', 'nightin'],
-  cusines: ['breakfast','coffee', 'dessert', 'american'],
-  cost: 2,
-  name: "Eat 'n Park (Robinson)",
-  image: null,
-  likes: 56,
-  dislikes: 35
-}, {
-  id: 2,
-  types: ['casual', 'nightin'],
-  cusines: ['chinese'],
-  cost: 2,
-  name: "Wai Wai Buffet",
-  image: null,
-  likes: 150,
-  dislikes: 2
-}, {
-  id: 3,
-  types: ['casual', 'nightin'],
-  cusines: ['coffee'],
-  cost: 2,
-  name: "Starbucks #12345",
-  image: null,
-  likes: 450,
-  dislikes: 6
-}, {
-  id: 4,
-  types: ['casual', 'nightin'],
-  cusines: ['dessert'],
-  cost: 3,
-  name: "Cold Stone Creamery (Robinson)",
-  image: null,
-  likes: 54,
-  dislikes: 1
-}, {
-  id: 5,
-  types: ['casual', 'nightin'],
-  cusines: ['fast'],
-  cost: 3,
-  name: "McDonalds #999999",
-  image: null,
-  likes: 7,
-  dislikes: 102
-}, {
-  id: 6,
-  types: ['casual', 'nightin'],
-  cusines: ['bar', 'pizza', 'italian'],
-  cost: 3,
-  name: "Primanti Bros. (Strip District)",
-  image: "https://www.primantibros.com/resources/images/pdf/PB_menu_cover_thumb_suburban.jpg",
-  likes: 1007,
-  dislikes: 102
-}];
-/** END OF TEST API DATA */
+var resultsContainer = $("#results"), resultLayout = 3, perPage = 9, filterType="", filterCuisine="", filterCost=5, apiResult = [];
 
 /**
  * Parse provided JSON, filtering out requsted results. Returning the filtered results to be displayed.
@@ -119,7 +26,138 @@ apiResult = [{
  */
 function filter(data) {
   //TO DO
-  displayResults(data);
+  var destringify = JSON.parse(data);
+  var tmp, types, genres;
+  var response = [];
+  var typeFilter, cuisineFilter;
+  
+  for (var i = 0; i < destringify.length; i++) {
+    
+    /** Check if type is correct */
+    $.each(destringify[i].types, function(j,v){
+      if(destringify[i].types[j].name === filterType || filterType.length <= 0){
+        typeFilter = true;
+        return(false);
+      }
+    });
+    
+    /** Check if cusisine is correct */
+    $.each(destringify[i].genres, function(j,v){
+      if(destringify[i].genres[j].name === filterCuisine || filterCuisine.length <= 0){
+        cuisineFilter = true;
+        return(false);
+      }
+    });
+    
+    /** IF passes filters push to temp array to rebuild result */
+    if(typeFilter){
+      if(cuisineFilter){
+        if(destringify[i].cost === filterCost || filterCost > 4){
+          response.push(destringify[i]);
+        }
+      } 
+    }
+  }
+  
+  tmp = '[';
+  /** Loop through records */
+  $.each(response, function(i, v) {
+    tmp += '{';
+    tmp += '"id": ' + response[i].id + ', ';
+    tmp += '"name": "' + response[i].name + '", ';
+    if(!response[i].street_name){
+      tmp += '"street_name": null, ';
+    } else {
+      tmp += '"street_name": "' + response[i].street_name + '", ';
+    }
+    if(!response[i].zip_code){
+      tmp += '"zip_code": null, ';
+    } else {
+      tmp += '"zip_code": "' + response[i].zip_code + '", ';
+    }
+    if(!response[i].web_site){
+      tmp += '"web_site": null, ';
+    } else {
+      tmp += '"web_site": "' + response[i].web_site + '", ';
+    }
+    if(!response[i].phone_number){
+      tmp += '"phone_number": null, ';
+    } else {
+      tmp += '"phone_number": "' + response[i].phone_number + '", ';
+    }
+    tmp += '"cost": "' + response[i].cost + '",';
+    tmp += '"created_at": "' + response[i].created_at + '",';
+    tmp += '"updated_at": "' + response[i].updated_at + '",';
+    tmp += '"types": [{';
+    
+    types = "";
+    
+    /** Loop through types */
+    $.each(response[i].types, function(j, v) {
+      types += '"id": ' + response[i].types[j].id + ',';
+      types += '"name": "' + response[i].types[j].name + '",';
+      if(response[i].types[j].description){
+        types += '"description": null,';
+      } else {
+        types += '"description": "' + response[i].types[j].description + '",';
+      }
+      types += '"created_at": "' + response[i].types[j].created_at + '",';
+      types += '"updated_at": "' + response[i].types[j].updated_at + '",';
+    });
+    
+    /** Remove the trailing comma created in the for loop */
+    types = types.substring(0, types.length - 1);
+    
+    /** Append types to tmp */
+    tmp += types;
+    tmp += '}],';
+    
+    /** Format string properly if genres exist for record */
+    if(response[i].genres.length > 0) {
+      tmp += '"genres": [{';
+    } else {
+      tmp += '"genres": [';
+    }
+    
+    /** Loop through genres */
+    genres = "";
+    $.each(response[i].genres, function(k, v) {
+      genres += '"id": ' + response[i].genres[k].id + ',';
+      genres += '"name": "' + response[i].genres[k].name + '",';
+      if(!response[i].genres[k].description){
+        genres += '"description": null,';
+      } else {
+        genres += '"description": "' + response[i].genres[k].description + '",';
+      }
+      genres += '"created_at": "' + response[i].genres[k].created_at + '",';
+      genres += '"updated_at": "' + response[i].genres[k].updated_at + '",';
+    });
+    
+    /** Remove the trailing comma created in the for loop */
+    genres = genres.substring(0, genres.length - 1);
+    
+    /** Append types to tmp */
+    tmp += genres;
+    if(response[i].genres.length > 0) {
+      tmp += '}],';
+    } else {
+      tmp += '],';
+    }
+    
+    tmp += '"restaurant_likes": [';
+    /** Loop through likes */
+    tmp += ']';
+    tmp += '},';
+  });
+  
+  /** Only remove the last character in string if it is longer than 1 **/
+  if(tmp.length > 1){
+    /** Remove the trailing comma created in the for loop */
+    tmp = tmp.substring(0, tmp.length - 1);
+  }
+  
+  tmp += ']';
+  displayResults(tmp);
 }
 
 /**
@@ -127,7 +165,7 @@ function filter(data) {
  * @param {json} results
  */
 function displayResults(results) {
-  var newResult, restaurantLink, restaurantName, restaurantImage, restaurantActions, resIMG, result, i, j, imgType, resultLayoutCSS, heightBuffer;
+  var newResult, restaurantLink, restaurantName, restaurantImage, restaurantActions, resIMG, result, i, j, k, imgType, resultLayoutCSS, heightBuffer;
 
   /** Validate results and sort by most liked */
   if (typeof results === 'string') {
@@ -146,7 +184,7 @@ function displayResults(results) {
   /** Clear results so we can repopulate it further down */
   resultsContainer.html("");
   
-  /** Handle empty an result **/
+  /** Handle an empty result **/
   if(results.length <= 0){
     var NaNResults = '<div class="row"><div class="col span-3-of-3 center">We don\'t seem to have what you are looking for right now.<br />Don\'t give up! The right match is out there somewhere.</div></div>';
     resultsContainer.append(NaNResults);
@@ -160,21 +198,7 @@ function displayResults(results) {
     /** Set result to the current record */
     result = results[i];
     
-    /** Determine which image to show */
-    if (result.image) {
-      resIMG = result.image;
-    } else {
-      imgType = result.cusines[0];
-
-      for(j = 0; j < stockImages.length; j++){
-        if(imgType === stockImages[j][0]){
-          resIMG = stockImageLocation + stockImages[j][1];
-        }
-      }
-      if(!resIMG){
-        resIMG = stockImageLocation + stockImages[0][1];
-      }
-    }
+    resIMG = getRestaurantLogo(result);
     
     /** Determine grid layout for resuilt */
     if(resultLayout > 1){
@@ -197,22 +221,22 @@ function displayResults(results) {
     resultsContainer.append(newResult);
 
     /** Generate event handlers for like, dislike, and info actions */
-    (function(id) {
-      $("button#like" + id).click(function() {
-        addLike(id);
+    (function(info) {
+      $("button#like" + info.id).click(function() {
+        addLike(info.id);
       });
-      $("button#dislike" + id).click(function() {
-        addDislike(id);
+      $("button#dislike" + info.id).click(function() {
+        addDislike(info.id);
       });
-      $("#info" + id).click(function() {
+      $("#info" + info.id).click(function() {
         /**
         * Feature: Include all asset information in popInfo()
         * Pro(s): Less API Calls
         * Con(s): Possible performance hit, Out of date information
         */
-        popInfo(id);
+        popInfo(info);
       });
-    })(result.id);
+    })(result);
 
     /**
      * After last record is processed:
@@ -235,6 +259,22 @@ function displayResults(results) {
       });
     }
   }
+}
+
+/**
+ * Determine which image to show
+ * @param {array} asset
+ */
+function getRestaurantLogo(asset){
+    if (asset.image) {
+      return asset.image;
+    } else {
+      var cuisineName = "";
+      if(asset.genres[0]){
+        cuisineName = asset.genres[0].name;
+      }
+      return "http://lous.work/dynIMG/foodHarmony/?font=Lato-Regular&cuisine="+cuisineName;
+    }
 }
 
 /**
@@ -314,6 +354,57 @@ function addDislike(resId) {
 }
 
 /**
+ * Pull GET data, set filter variables, update default selections for filter menu
+ */
+function loadFilters(){
+  var queryStart = window.location.search.indexOf("?") + 1,
+      queryEnd   = window.location.search.indexOf("#") + 1 || window.location.search.length + 1,
+      query      = window.location.search.slice(queryStart, queryEnd - 1),
+      pairs      = query.replace(/\+/g, " ").split("&"),
+      params     = {}, i, n, v, nv;
+  
+  /** Checking if there is no GET data to parse */
+  if (query === window.location.search || query === "") {
+    return;
+  }
+  
+  for(i = 0; i < pairs.length; i++){
+    nv = pairs[i].split("=");
+    n = decodeURIComponent(nv[0]);
+    v = decodeURIComponent(nv[1]);
+    //var filterType,filterCuisine,filterCost;
+    switch (n){
+      case 'type':
+        if(v.length >= 1){
+          filterType = v;
+          $("#restaurantTypeSearch").val(v);
+        } else {
+          filterType = "";
+        }
+        break;
+      case 'food':
+        if(v.length >= 1){
+          filterCuisine = v;
+          $("#foodTypeSearch").val(v);
+        } else {
+          filterCuisine = "";
+        }
+        break;
+      case 'cost':
+        if(v.length >= 1){
+          filterCost = v;
+          $("#costLevelSearch").val(v);
+        } else {
+          filterCost = 5;
+        }
+        break;
+      default:
+        console.warn("Unexpected parameter was found in URI.");
+    }
+  }
+}
+
+/**
  * Set filter variables & reload results
  */
 function setFilters(){
@@ -334,23 +425,15 @@ function setFilters(){
       perPage = 9;
   }
   
-  filter(JSON.stringify(apiResult));
+  filter(apiResult);
 }
 
 /**
  * Show other information about the asset
- * @param {number} resId
+ * @param {array} result
  */
-function popInfo(resId) {
-  /**
-   * API Call:
-   * GET information about asset
-   *
-   *  OR
-   *
-   * Pull from @params instead of another API Call
-   */
-   //TO DO
+function popInfo(result) {
+  var i, typesList, genresList, costSymbol;
   
   /** Hide Overflow of html, visual improvement when modal is open */
   $("html").css("overflow", "hidden");
@@ -361,6 +444,50 @@ function popInfo(resId) {
    * Con(s): More work
    */
   var modalWidth = "1200px";
+  
+  /** Display the information from the asset in the modal before showing it */
+  resIMG = getRestaurantLogo(result);
+  if(resIMG.length > 1){
+    $("#infoRestaurantImage").prop('src', resIMG);
+  }
+  if(result.name && result.name.length > 1){
+    $("#infoRestaurantName").html(result.name);
+  }
+  if(result.street_address && result.zip_code && result.street_address.length > 1 && result.zip_code.length > 1){
+    $("#infoRestaurantAddress").html(result.street_address + ", Pittsburgh " + result.zip_code);
+  }
+  if(result.phone_number && result.phone_number.length > 1){
+    $("#infoRestaurantPhone").html(result.phone_number);
+  }
+  if(result.web_site && result.web_site.length > 1){
+    $("#infoRestaurantWebsite").html('<a href="'+result.web_site+'" target="_blank">'+result.web_site+'</a>');
+  }
+  
+  if(result.types){
+    typesList = "";
+    for(i = 0; i < result.types.length; i++){
+      typesList += result.types[i].name + ", ";
+    }
+    typesList = typesList.substring(0, typesList.length - 2);
+    $("#infoRestaurantType").html(typesList);
+  }
+  
+  if(result.genres){
+    genresList = "";
+    for(i = 0; i < result.genres.length; i++){
+      genresList += result.genres[i].name + ", ";
+    }
+    genresList = genresList.substring(0, genresList.length - 2);
+    $("#infoRestaurantCuisine").html(genresList);
+  }
+  
+  if(result.cost){
+    costSymbol = "";
+    for(i = 0; i < parseInt(result.cost); i++){
+     costSymbol += "$";
+    }
+    $("#infoRestaurantCost").html(costSymbol);
+  }
   
   /** Display Modal with other info about asset */
   $("#modal").dialog({
@@ -390,19 +517,25 @@ $().ready(function() {
   $('#modal > .row').tooltip();
   
   /**
-   * Process POST Data & Set filters
-   *\
-   //TO DO
-  
-  /**
    * API Call
    * GET results from API
    * result apiResult
    */
-  //TO DO
-   
-  /** Send API Result through the filters */
-  filter(JSON.stringify(apiResult));
+  $.get(apiEndpointBase + "/restaurants", function(response, status){
+    if (status === "success") {
+      apiResult = JSON.stringify(response);
+      /** Set filters */
+      loadFilters();
+      /** Send API Result through the filters */
+      filter(apiResult);
+    }
+  });
+  
+  /** Display the Users Name IF logged in */
+  if(localStorage.getItem('usersName')){
+    $('#welcomeItem').show();
+    $('#usersName').html(localStorage.getItem('usersName'));
+  }
   
   /** Create event listener for the Apply Filters button */
   $("#applyFiltersButton").click(function(){setFilters();});
