@@ -22,8 +22,9 @@
 					<li><a href="#search">Search</a></li>
 					<li><a href="#suggest">Add</a></li>
 					<li><a href="contact.html">Contact Us</a></li>
-					<li><a href="Login.html">Join / Login</a></li>
-					<li>Welcome <span id='usersName'></span>!</li>
+					<li id="loginListItem"><a href="login.html">Join / Login</a></li>
+					<li id="logoutListItem"><a href="login.html?logout">Logout</a></li>
+					<li><span id='usersName'></span></li>
 				</ul>
 			</div>
 		</div>
@@ -83,7 +84,7 @@
 			<p>Want to customize your foodHarmony experience?<br>Refine your matches by:</p>
 			<p class="bulletPoints"><img class="checkMark" src="resources/images/red-check.png" alt="red check mark">Creating favorite lists</p>
 			<p class="bulletPoints"><img class="checkMark" src="resources/images/red-check.png" alt="red check mark">Hiding restaurants you're not into</p>
-			<a id="signUpButton" class="button buttonFull" href="#">Join now</a>
+			<a id="signUpButton" class="button buttonFull" href="login.html">Join now</a>
 		</div>
 	</section>
 
@@ -129,41 +130,43 @@
 						<label class="bold">Type of food*</label>
 					</div>
 
-					<div class="row">
+					<div id="costCheckbox" class="row">
 						<label class="bold">Cost*</label>
 						<div class="row checkboxContainer">
 							<div class="col span-1-of-4">
-								<input class="checkbox" id="costLevelOneCheck" type="checkbox" name="costLevelOne" value="costLevelOne">
+								<input class="checkbox" id="costLevelOneCheck" type="radio" name="costLevel" value="1">
 								<label class="checkboxLabel" for="costLevelOneCheck">$</label>
 							</div>
 							<div class="col span-1-of-4">
-								<input class="checkbox" id="costLevelTwoCheck" type="checkbox" name="costLevelTwo" value="costLevelTwo">
+								<input class="checkbox" id="costLevelTwoCheck" type="radio" name="costLevel" value="2">
 								<label class="checkboxLabel" for="costLevelTwoCheck">$$</label>
 							</div>
 							<div class="col span-1-of-4">
-								<input class="checkbox" id="costLevelThreeCheck" type="checkbox" name="costLevelThree" value="costLevelThree">
+								<input class="checkbox" id="costLevelThreeCheck" type="radio" name="costLevel" value="3">
 								<label class="checkboxLabel" for="costLevelThreeCheck">$$$</label>
 							</div>
 							<div class="col span-1-of-4">
-								<input class="checkbox" id="costLevelFourCheck" type="checkbox" name="costLevelFour" value="costLevelFour">
+								<input class="checkbox" id="costLevelFourCheck" type="radio" name="costLevel" value="4">
 								<label class="checkboxLabel" for="costLevelFourCheck">$$$$</label>
 							</div>
 						</div>
 					</div>
 
 					<div class="row">
-						<button id="suggestButton" class="searchButton" type="button" onclick='addRestaurant()'>Add your match</button>
+						<button id="suggestButton" class="searchButton" type="button" onclick='postRestaurant()'>Add your match</button>
 					</div>
+					
 					<div id='addRestaurantModal' class='modal'>
-						<div class='modalContent'>
-							<div class='modalHeader'>
-								<span class='close'>x</span>
-								<h2>Thank you!</h2>
-							</div>
-							<div class='modalBody'>
-								<p>Thank you for adding a new restaurant to our system.<br> Every restaurant you add helps another foodHarmony user find their perfect match!</p>
-							</div>
-						</div>
+					<div class='modalContent'>
+					<div class='modalHeader'>
+						<span class='close'>x</span>
+						<h2>Thank you!</h2>
+					</div>
+					<div class='modalBody'>
+						<p>Thank you for adding a new restaurant to our system.<br>
+							Every restaurant you add helps another foodHarmony user find their perfect match!</p>
+					</div>
+					</div>
 					</div>
 				</form>
 			</div>
@@ -181,7 +184,7 @@
 	<script src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
 	<script src="resources/js/api-variables.js" type="text/javascript" charset="utf-8"></script>
 	<script src="resources/js/script.js" type="text/javascript" charset="utf-8"></script>
-	<script src="resources/js/foodHarmony.js"type="text/javascript" charset="utf-8"></script>
+	<script src="resources/js/foodHarmony.js" type="text/javascript" charset="utf-8"></script>
 </body>
 
 

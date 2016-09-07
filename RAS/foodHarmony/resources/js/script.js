@@ -62,7 +62,7 @@ function updateRestaurantTypesCheckbox(restaurantTypes) { //creates new checkbox
     }
     var newCheckbox = document.createElement('div'); 
     newCheckbox.classList.add('col', 'span-1-of-4');
-    var checkboxContent = '<input class="checkbox" id="' + restaurantType.id + '" type="checkbox" name="' + restaurantType.name + '" value="' + restaurantType.name + '">' + 
+    var checkboxContent = '<input class="checkbox typeCheckbox" id="' + restaurantType.id + '" type="checkbox" name="' + restaurantType.name + '" value="' + restaurantType.name + '">' + 
     '<label class="checkboxLabel" for="' + restaurantType.id + '">' + restaurantType.name + '</label>';
     newCheckbox.innerHTML = checkboxContent;
     newRow.appendChild(newCheckbox);
@@ -83,25 +83,20 @@ function updateFoodTypesCheckbox(foodTypes) { //creates new checkbox for every a
     }
     var newCheckbox = document.createElement('div'); 
     newCheckbox.classList.add('col', 'span-1-of-4');
-    var checkboxContent = '<input class="checkbox" id="' + foodType.id + '" type="checkbox" name="' + foodType.name + '" value="' + foodType.name + '">' + 
+    var checkboxContent = '<input class="checkbox foodCheckbox" id="' + foodType.id + '" type="checkbox" name="' + foodType.name + '" value="' + foodType.name + '">' + 
     '<label class="checkboxLabel" for="' + foodType.id + '">' + foodType.name + '</label>';
     newCheckbox.innerHTML = checkboxContent;
     newRow.appendChild(newCheckbox);
   });
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
+/*function logout() {
+  $('#loginListItem').show();
+  $('#logoutListItem').hide();
+  localStorage.removeItem("usersName");
+  localStorage.removeItem("usersId");
+  window.location = "login.html?logout";
+}*/
 
 
 
@@ -112,12 +107,35 @@ function updateFoodTypesCheckbox(foodTypes) { //creates new checkbox for every a
 $(document).ready(function(){ //when the document finishes loading, do these things
   
   getRestaurantTypes();
+
   getFoodTypes();
-  $('#usersName').html(localStorage.getItem('usersName'));
+
+  if (localStorage.getItem('usersName')) {
+    $('#usersName').html('Welcome ' + localStorage.getItem('usersName') + '!');
+    $('#loginListItem').hide();
+    $('#logoutListItem').show();
+  } else {
+    $('#loginListItem').show();
+    $('#logoutListItem').hide();   
+  }
+
+  $('a[href*=#]').click(function() { //find any link that looks like <a href="#"> and add a click event to it
+    //Check that the link is pointing to the same page and domain, strips the # and just looks at what comes after
+    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+      var $target = $(this.hash); //set target equal to the anchor part of the url
+      $target = $target.length && $target || $('[name=' + this.hash.slice(1) +']');
+      if ($target.length) {
+        var targetOffset = $target.offset().top; //set the coordinates of the top of the element
+        $('html,body').animate({ //get the html body and snimate a scroll to the targetOffset position in 1 second
+          scrollTop: targetOffset}, 1000);
+       return false;
+      }
+    }
+  });
 
   $('#detailedSearchButton').click(function(){
     window.location = "results.html?type="+$('#restaurantTypeSearch').val()+"&food="+$('#foodTypeSearch').val()+"&cost="+$('#costLevelSearch').val();
-  })
+  });
 
 });
 

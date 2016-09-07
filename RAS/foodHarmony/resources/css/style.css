@@ -113,7 +113,7 @@ h2:after {
 
 .buttonFull:link,
 .buttonFull:visited {
-	margin-right: 15px;
+	
  	background-color: #cf000f;
  	border: 1px solid #cf000f;
  	color: #fff;
@@ -461,7 +461,7 @@ select {
 	padding: 0;
 	border: 1px solid #888;
 	width: 70%;
-	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba (0,0,0,0.19);
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
 
 }
 
@@ -568,19 +568,19 @@ footer p {
 	 position: relative;
 }
 #name {
-border-radius: 5px;
-box-shadow: 5px;
-width:55%;
-padding:5px;
-background-color: #fff;
-border: solid #ccc;
+	border-radius: 5px;
+	box-shadow: 5px;
+	width:55%;
+	padding:5px;
+	background-color: #fff;
+	border: solid #ccc;
 }
 #email {
-border-radius: 7px;
-width:55%;
-padding:5px;
-background-color: #fff;
-border: solid #ccc;
+	border-radius: 7px;
+	width:55%;
+	padding:5px;
+	background-color: #fff;
+	border: solid #ccc;
 }
 #message {
 	height:100px;
@@ -602,6 +602,9 @@ border: solid #ccc;
 	right: 478px;*/
 	color:#ccc;
 	font-size: 10px;
+}
+#laptopImg{
+	color:#ccc;
 }
 #contactInfo {
 	float: left;
